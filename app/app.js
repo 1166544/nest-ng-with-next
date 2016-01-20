@@ -82,4 +82,4 @@ config(['$routeProvider',  function($routeProvider) {
 })
 .controller("UserCtrl", function ($scope, $location, $route) {
 
-})
+});
