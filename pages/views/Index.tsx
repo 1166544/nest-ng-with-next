@@ -31,7 +31,12 @@ class Index extends React.Component<Props> {
 	public render() {
 		console.log('pageData...', this.props);
 
-		return (<div><a>{this.props.title}</a></div>);
+		return (
+			<div>
+				<div>{this.props.content}</div>
+				<div>{this.props.title}</div>
+			</div>
+		);
 	}
 }
 
