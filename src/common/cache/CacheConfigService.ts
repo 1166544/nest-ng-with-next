@@ -34,7 +34,7 @@ export class CacheConfigService implements CacheOptionsFactory {
 	private waitMinuteTime: number = 60;
 
 	constructor(private configService: ConfigService) {
-		// hole
+		console.log(this.configService.get('ENV'));
 	}
 
 	/**

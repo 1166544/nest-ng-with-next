@@ -1,16 +1,7 @@
 import { parse } from 'dotenv';
 import * as fs from 'fs';
 import * as Joi from 'joi';
-
-/**
- * 环境配置
- *
- * @export
- * @interface EnvConfig
- */
-export interface IEnvConfig {
-	[key: string]: string;
-}
+import { IEnvConfig } from './interfaces/IEnvConfig';
 
 /**
  * 配置服务
@@ -47,7 +38,8 @@ export class ConfigService {
 	private validateConfig(envConfig: IEnvConfig): any {
 		const joinNum: number = 50;
 		const envSchema: Object = Joi.object({
-			CACHE_TTL: Joi.number().default(joinNum)
+			CACHE_TTL: Joi.number().default(joinNum),
+			ENV: Joi.string().default('dev')
 		});
 
 		const { error, value } = Joi.validate(envConfig, envSchema);

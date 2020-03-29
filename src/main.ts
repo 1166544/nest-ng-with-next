@@ -4,6 +4,9 @@ import RenderMiddleware from '@server/common/render/RenderMiddleware';
 import RenderService from '@server/common/render/RenderService';
 import Next from 'next';
 import { AppModule } from './AppModule';
+import { ConfigDefault } from '@server/config/ConfigDefault';
+import configParser from './common/config/ConfigParser';
+import Consola from 'consola';
 
 /**
  * bootstrap
@@ -12,12 +15,14 @@ import { AppModule } from './AppModule';
 async function bootstrap(): Promise<any> {
 	const dev: boolean = process.env.NODE_ENV !== 'production';
 	const app: any = Next({ dev });
-	const port: number = 8088;
 
 	await app.prepare();
 
 	const server: any = await NestFactory.create(AppModule);
 	const renderService: any = server.get(RenderService);
+	const configer: ConfigDefault = configParser.getConfig();
+	const serverPort: number = Number(process.env.PORT) || configer.port;
+	const host: string = configer.serverAdderess;
 
 	renderService.setRequestHandler(app.getRequestHandler());
 	renderService.setRenderer(app.render.bind(app));
@@ -32,7 +37,12 @@ async function bootstrap(): Promise<any> {
 		)
 	);
 
-	await server.listen(port);
+	await server.listen(serverPort, host, () => {
+		Consola.ready({
+			message: `Server listening on http://${host}:${serverPort}`,
+			badge: true
+		});
+	});
 }
 
 bootstrap();
