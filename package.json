@@ -1,10 +1,13 @@
 {
 	"name": "nest-next",
 	"version": "1.0.0",
-	"main": "index.js",
+	"description": "A project for nextjs and nestjs integrated.",
 	"author": "James Liauw",
 	"license": "MIT",
 	"private": true,
+	"pre-commit": [
+		"lint"
+	],
 	"scripts": {
 		"dev": "npm run client:dev",
 		"client:dev": "npm run lint && cross-env NODE_ENV=development npm run cover &&nodemon src/Main.ts",
@@ -51,6 +54,7 @@
 		"class-validator": "^0.12.0-rc.0",
 		"cross-env": "^7.0.2",
 		"jest": "^23.6.0",
+		"pre-commit": "^1.2.2",
 		"ts-jest": "^23.10.4",
 		"ts-node": "^7.0.1",
 		"tsconfig-paths": "^3.6.0",

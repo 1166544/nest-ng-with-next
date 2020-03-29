@@ -3,9 +3,9 @@ import RenderFilter from '@server/common/render/RenderFilter';
 import RenderMiddleware from '@server/common/render/RenderMiddleware';
 import RenderService from '@server/common/render/RenderService';
 import Next from 'next';
-import { AppModule } from './AppModule';
+import { AppModule } from '@server/AppModule';
 import { ConfigDefault } from '@server/config/ConfigDefault';
-import configParser from './common/config/ConfigParser';
+import configParser from '@server/common/config/ConfigParser';
 import Consola from 'consola';
 
 /**
