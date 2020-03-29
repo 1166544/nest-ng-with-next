@@ -1,47 +1,47 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "jsx": "react",
-    "strict": true,
-    "pretty": true,
-    
-    "noImplicitAny": true,
-    "alwaysStrict": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    
-    "outDir": ".next",
-    "moduleResolution": "node",
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "commonjs",
+		"jsx": "react",
+		"strict": true,
+		"pretty": true,
 
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+		"noImplicitAny": true,
+		"alwaysStrict": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
 
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+		"outDir": ".next",
+		"moduleResolution": "node",
 
-    "sourceMap": true,
-    "skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
 
-    "lib": [
-      "es2017"
-    ],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
 
-    "baseUrl": ".",
-    "paths": {
-      "@server/*": [
-        "src/*"
-      ],
-      "@src/*": [
-        "pages/*"
-      ]
-    },
+		"sourceMap": true,
+		"skipLibCheck": true,
 
-    "typeRoots": [
-      "node_modules/@types"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ]
+		"lib": [
+			"es2017"
+		],
+
+		"baseUrl": ".",
+		"paths": {
+			"@server/*": [
+				"src/*"
+			],
+			"@src/*": [
+				"pages/*"
+			]
+		},
+
+		"typeRoots": [
+			"node_modules/@types"
+		]
+	},
+	"exclude": [
+		"node_modules"
+	]
 }
