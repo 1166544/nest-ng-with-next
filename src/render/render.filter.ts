@@ -1,38 +1,44 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
-import { ErrorRenderer, RequestHandler } from '@server/render/types';
+import { ErrorRenderer, RequestHandler } from '@server/render/render.types';
 import { parse as parseUrl } from 'url';
 
+/**
+ * render filter
+ *
+ * @class RenderFilter
+ * @implements {ExceptionFilter}
+ */
 @Catch()
 class RenderFilter implements ExceptionFilter {
-  private readonly requestHandler: RequestHandler;
-  private readonly errorRenderer: ErrorRenderer;
-  private readonly logger: Logger;
+	private readonly requestHandler: RequestHandler;
+	private readonly errorRenderer: ErrorRenderer;
+	private readonly logger: Logger;
 
-  constructor(requestHandler: RequestHandler, errorRenderer: ErrorRenderer) {
-    this.requestHandler = requestHandler;
-    this.logger = new Logger();
-    this.errorRenderer = errorRenderer;
-  }
+	constructor(requestHandler: RequestHandler, errorRenderer: ErrorRenderer) {
+		this.requestHandler = requestHandler;
+		this.logger = new Logger();
+		this.errorRenderer = errorRenderer;
+	}
 
-  /**
-   * Nest isn't aware of how next handles routing for the build assets, let next
-   * handle routing for any request that isn't handled by a controller
-   * @param err
-   * @param ctx
-   */
-  public async catch(err: any, ctx: ArgumentsHost) {
-    const [req, res] = ctx.getArgs();
+	/**
+	 * Nest不知道next如何处理构建资产的路由，因此让next处理未由控制器处理的任何请求的路由
+	 * 交由Next接管
+	 * @param err
+	 * @param ctx
+	 */
+	public async catch(err: any, ctx: ArgumentsHost): Promise<any> {
+		const [req, res]: Array<any> = ctx.getArgs();
 
-    if (!res.headersSent) {
-      if (err.response === undefined) {
-        const { pathname, query } = parseUrl(req.url, true);
-        this.logger.error(err.message, err.stack);
-        await this.errorRenderer(err, req, res, pathname, query);
-      } else {
-        await this.requestHandler(req, res);
-      }
-    }
-  }
+		if (!res.headersSent) {
+			if (err.response === undefined) {
+				const { pathname, query } = parseUrl(req.url, true);
+				this.logger.error(err.message, err.stack);
+				await this.errorRenderer(err, req, res, pathname, query);
+			} else {
+				await this.requestHandler(req, res);
+			}
+		}
+	}
 }
 
 export default RenderFilter;

@@ -1,26 +1,32 @@
 import { Injectable, MiddlewareFunction, NestMiddleware } from '@nestjs/common';
 import RenderService from '@server/render/render.service';
 
+/**
+ * render middleware
+ *
+ * @class RenderMiddleware
+ * @implements {NestMiddleware}
+ */
 @Injectable()
 class RenderMiddleware implements NestMiddleware {
-  private readonly renderService: RenderService;
+	private readonly renderService: RenderService;
 
-  public constructor(renderService: RenderService) {
-    this.renderService = renderService;
-  }
+	public constructor(renderService: RenderService) {
+		this.renderService = renderService;
+	}
 
-  /**
-   * Set the current req and res in our render service
-   * @param args
-   */
-  public resolve(...args: any[]): MiddlewareFunction {
-    return (req, res, next) => {
-      this.renderService.next(req, res);
-      if (next) {
-        next();
-      }
-    };
-  }
+	/**
+	 * 在渲染服务中设置当前REQ和RES对象
+	 * @param args
+	 */
+	public resolve(...args: any[]): MiddlewareFunction {
+		return (req: any, res: any, next: any): any => {
+			this.renderService.next(req, res);
+			if (next) {
+				next();
+			}
+		};
+	}
 }
 
 export default RenderMiddleware;

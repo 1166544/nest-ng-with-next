@@ -3,6 +3,6 @@
  *
  * @interface InitialProps
  */
-export interface InitialProps {
+export interface IInitialProps {
 	query: any;
 }

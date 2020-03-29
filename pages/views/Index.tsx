@@ -1,24 +1,24 @@
 import React from 'react';
-import { Props } from './model/ModelProps';
-import { InitialProps } from './model/ModelInitialProps';
+import { IProps } from './model/model-props';
+import { IInitialProps } from './model/model-initial-props';
 
 /**
  * 渲染页面
  *
  * @class Index
- * @extends {React.Component<Props>}
+ * @extends {React.Component<IProps>}
  */
-class Index extends React.Component<Props> {
+class Index extends React.Component<IProps> {
 
 	/**
 	 * 获取渲染页面数据
 	 *
 	 * @static
-	 * @param {InitialProps} { query }
+	 * @param {IInitialProps} { query }
 	 * @returns
 	 * @memberof Index
 	 */
-	public static getInitialProps({ query }: InitialProps) {
+	public static getInitialProps({ query }: IInitialProps): IInitialProps {
 		return query;
 	}
 
@@ -28,7 +28,7 @@ class Index extends React.Component<Props> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public render() {
+	public render(): any {
 		console.log('pageData...', this.props);
 
 		return (

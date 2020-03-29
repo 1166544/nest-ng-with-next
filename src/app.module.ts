@@ -5,9 +5,15 @@ import { CacheModule } from './cache/cache.module';
 import { ConfigModule } from './config/config.module';
 import RenderModule from './render/render.module';
 
+/**
+ * app module
+ *
+ * @export
+ * @class AppModule
+ */
 @Module({
-  imports: [RenderModule, CacheModule, ConfigModule],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [RenderModule, CacheModule, ConfigModule],
+	controllers: [AppController],
+	providers: [AppService]
 })
 export class AppModule {}

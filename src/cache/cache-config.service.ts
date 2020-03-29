@@ -38,8 +38,8 @@ export class CacheConfigService implements CacheOptionsFactory {
 	}
 
 	/**
-	 * Example retry strategy for when redis is used for the cache
-	 * This example is only compatible with cache-manager-redis-store because it used node_redis
+	 * 当缓存使用redis时的重试策略示例
+	 * 此示例仅与缓存管理器redis store兼容，因为它使用了node redis
 	 *
 	 * @returns
 	 * @memberof CacheConfigService
