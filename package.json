@@ -46,13 +46,18 @@
 		"ts-node": "^7.0.1",
 		"tsconfig-paths": "^3.6.0",
 		"tslint": "^5.11.0",
+		"tslint-config-alloy": "^0.2.1",
 		"typescript": "^3.0.3"
 	},
 	"jest": {
 		"moduleNameMapper": {
 			"^@server/(.*)$": "<rootDir>/src/$1"
 		},
-		"moduleFileExtensions": ["js", "json", "ts"],
+		"moduleFileExtensions": [
+			"js",
+			"json",
+			"ts"
+		],
 		"rootDir": ".",
 		"testRegex": ".spec.ts$",
 		"coverageDirectory": "./coverage",
