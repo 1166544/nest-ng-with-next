@@ -2,6 +2,8 @@ import { parse } from 'dotenv';
 import * as fs from 'fs';
 import * as Joi from 'joi';
 import { IEnvConfig } from './interfaces/IEnvConfig';
+import configParser from '@server/common/config/ConfigParser';
+import { ConfigDefault } from '@server/config/ConfigDefault';
 
 /**
  * 配置服务
@@ -14,6 +16,16 @@ export class ConfigService {
 
 	constructor(path: string = 'development') {
 		this.envConfig = this.validateConfig(parse(fs.readFileSync('.env')));
+	}
+
+	/**
+	 * 获取当前环境配置
+	 *
+	 * @returns {ConfigDefault}
+	 * @memberof ConfigService
+	 */
+	public getConfig(): ConfigDefault {
+		return configParser.getConfig();
 	}
 
 	/**

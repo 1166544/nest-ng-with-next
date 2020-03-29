@@ -21,4 +21,6 @@ import { CacheService } from './CacheService';
 	providers: [CacheConfigService, CacheService],
 	exports: [CacheService]
 })
-export class CacheModule {}
+export class CacheModule {
+	// hole
+}

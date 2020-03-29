@@ -48,7 +48,7 @@ class ConfigParser {
 
 	constructor() {
 		this.envConfig = parse(fs.readFileSync('.env'));
-		console.log('envConfig...', this.envConfig.ENV);
+		// console.log('envConfig...', this.envConfig.ENV);
 
 		switch (this.envConfig.ENV) {
 			case ConfigDefault.ENV_DEV:

@@ -3,7 +3,6 @@ import {
 	CacheOptionsFactory,
 	Injectable
 } from '@nestjs/common';
-import { ConfigService } from '@server/common/config/ConfigService';
 
 /**
  * 缓存服务
@@ -33,8 +32,8 @@ export class CacheConfigService implements CacheOptionsFactory {
 	 */
 	private waitMinuteTime: number = 60;
 
-	constructor(private configService: ConfigService) {
-		console.log(this.configService.get('ENV'));
+	constructor() {
+		// console.log('this.configService.get("ENV")', this.configService.get('ENV'));
 	}
 
 	/**

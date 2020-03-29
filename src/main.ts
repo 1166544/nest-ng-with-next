@@ -7,6 +7,10 @@ import { AppModule } from '@server/AppModule';
 import { ConfigDefault } from '@server/config/ConfigDefault';
 import configParser from '@server/common/config/ConfigParser';
 import Consola from 'consola';
+import helmet from 'helmet';
+import csurf from 'csurf';
+import rateLimit from 'express-rate-limit';
+import cookieParser from 'cookie-parser';
 
 /**
  * bootstrap
@@ -29,6 +33,7 @@ async function bootstrap(): Promise<any> {
 	renderService.setErrorRenderer(app.renderError.bind(app));
 	renderService.bindHttpServer(server.getHttpAdapter());
 
+	// server.setGlobalPrefix(configer.getGlobalPrefix());
 	server.use(new RenderMiddleware(renderService).resolve());
 	server.useGlobalFilters(
 		new RenderFilter(
@@ -36,6 +41,13 @@ async function bootstrap(): Promise<any> {
 			renderService.getErrorRenderer()
 		)
 	);
+
+	// security
+	server.use(helmet());
+	server.enableCors();
+	server.use(cookieParser());
+	server.use(csurf({ cookie: true }));
+	server.use(rateLimit(configer.getRateConfig()));
 
 	await server.listen(serverPort, host, () => {
 		Consola.ready({
