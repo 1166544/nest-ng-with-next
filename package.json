@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"dev": "nodemon src/main.ts",
+		"dev": "nodemon src/Main.ts",
 		"build:clean": "rm -rf .next",
 		"build:server": "npx tsc --project tsconfig.server.json && npx babel .next/production-server -d .next/production-server --config-file ./.babelrc-server --extensions \".js\"",
 		"build:ui": "npx next build",
@@ -41,6 +41,7 @@
 		"@types/next": "^6.1.8",
 		"@zeit/next-typescript": "^1.1.1",
 		"babel-plugin-module-resolver": "^3.1.1",
+		"class-validator": "^0.12.0-rc.0",
 		"jest": "^23.6.0",
 		"ts-jest": "^23.10.4",
 		"ts-node": "^7.0.1",

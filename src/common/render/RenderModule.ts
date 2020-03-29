@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import RenderService from './render.service';
+import RenderService from './RenderService';
 
 /**
  * render module

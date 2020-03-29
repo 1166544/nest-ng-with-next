@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
-import { ErrorRenderer, RequestHandler } from '@server/render/render.types';
+import { ErrorRenderer, RequestHandler } from '@server/common/render/RenderTypes';
 import { parse as parseUrl } from 'url';
 
 /**

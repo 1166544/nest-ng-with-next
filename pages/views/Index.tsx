@@ -1,6 +1,6 @@
 import React from 'react';
-import { IProps } from './model/model-props';
-import { IInitialProps } from './model/model-initial-props';
+import { IProps } from './model/ModelProps';
+import { IInitialProps } from './model/ModelInitialProps';
 
 /**
  * 渲染页面

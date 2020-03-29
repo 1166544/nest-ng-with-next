@@ -1,5 +1,5 @@
 import { Injectable, MiddlewareFunction, NestMiddleware } from '@nestjs/common';
-import RenderService from '@server/render/render.service';
+import RenderService from '@server/common/render/RenderService';
 
 /**
  * render middleware

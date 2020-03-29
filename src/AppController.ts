@@ -5,7 +5,7 @@ import {
 	Render,
 	UseInterceptors
 } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppService } from './AppService';
 
 /**
  * 顶层控制器

@@ -3,7 +3,7 @@ import {
 	CacheOptionsFactory,
 	Injectable
 } from '@nestjs/common';
-import { ConfigService } from '@server/config/config.service';
+import { ConfigService } from '@server/common/config/ConfigService';
 
 /**
  * 缓存服务

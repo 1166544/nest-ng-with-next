@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import RenderFilter from '@server/render/render.filter';
-import RenderMiddleware from '@server/render/render.middleware';
-import RenderService from '@server/render/render.service';
+import RenderFilter from '@server/common/render/RenderFilter';
+import RenderMiddleware from '@server/common/render/RenderMiddleware';
+import RenderService from '@server/common/render/RenderService';
 import Next from 'next';
-import { AppModule } from './app.module';
+import { AppModule } from './AppModule';
 
 /**
  * bootstrap

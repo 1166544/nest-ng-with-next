@@ -1,4 +1,4 @@
-import { IInitialProps } from "./model-initial-props";
+import { IInitialProps } from "./ModelInitialProps";
 
 /**
  * 页面参数细分结构
