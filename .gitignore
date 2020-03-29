@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+
+# IDE
+/.idea
+/.awcache
+
+# misc
+npm-debug.log
+
+# tests
+/test
+/coverage
+/.nyc_output
+
+# dist
+/dist
+yarn.lock
+.nuxt
+.history
+config/config.env.ts
+config/env.config.ts
+yarn-error.log
+package-lock.json
+.next
