@@ -1,24 +1,6 @@
 import React from 'react';
-
-/**
- * 服务端传给页面参数结构
- *
- * @interface InitialProps
- */
-interface InitialProps {
-  query: any;
-}
-
-/**
- * 页面参数细分结构
- *
- * @interface Props
- * @extends {InitialProps}
- */
-interface Props extends InitialProps {
-  title: string;
-  content: string;
-}
+import { Props } from './model/ModelProps';
+import { InitialProps } from './model/ModelInitialProps';
 
 /**
  * 渲染页面
