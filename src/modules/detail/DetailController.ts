@@ -26,7 +26,7 @@ export class DetailController {
 	 * @memberof DetailController
 	 */
 	@Get('detailPage')
-	@Render('Detail')
+	@Render('detail/Detail')
 	public detail(): any {
 		// 返回给页面数据内容
 		return this.detailService.getDetailInfo();

@@ -25,7 +25,7 @@ export class AppController {
 	 * @memberof AppController
 	 */
 	@Get()
-	@Render('Index')
+	@Render('index/Index')
 	public root(): any {
 		return this.appService.root();
 	}
