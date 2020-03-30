@@ -29,4 +29,16 @@ export class AppController {
 	public root(): any {
 		return this.appService.root();
 	}
+
+	/**
+	 * 其它页入口
+	 *
+	 * @returns {*}
+	 * @memberof AppController
+	 */
+	@Get()
+	@Render('Detail')
+	public detail(): any {
+		return this.appService.root();
+	}
 }

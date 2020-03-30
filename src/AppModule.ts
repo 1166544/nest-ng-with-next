@@ -5,6 +5,7 @@ import { CacheModule } from './common/cache/CacheModule';
 import { ConfigModule } from './common/config/ConfigModule';
 import RenderModule from './common/render/RenderModule';
 import { TransportModule } from './modules/transport/TransportModule';
+import { DetailModule } from './modules/detail/DetailModule';
 
 /**
  * app module
@@ -17,7 +18,8 @@ import { TransportModule } from './modules/transport/TransportModule';
 		RenderModule,
 		CacheModule,
 		ConfigModule,
-		TransportModule
+		TransportModule,
+		DetailModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
