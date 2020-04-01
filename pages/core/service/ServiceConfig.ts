@@ -45,7 +45,7 @@ class ConfigService {
 	 */
 	public getConfig(): any {
 		return {
-			ocalUrl: 'http://127.0.0.1',
+			localUrl: 'http://127.0.0.1:8088',
 			cnodeUrl: 'https://cnodejs.org'
 		};
 	}

@@ -11,7 +11,7 @@ import configService from '@src/core/service/ServiceConfig';
 class CnNodeService extends TransportService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
-		baseOption.baseUrl = configService.getConfig().cnodeUrl;
+		baseOption.baseUrl = configService.getConfig().localUrl;
 		super(baseOption);
 	}
 
@@ -23,6 +23,16 @@ class CnNodeService extends TransportService {
 	 */
 	public async getTopics(): Promise<any> {
 		return await this.get('/api/v1/topics');
+	}
+
+	/**
+	 * test
+	 *
+	 * @returns {Promise<any>}
+	 * @memberof CnNodeService
+	 */
+	public async getTest(): Promise<any> {
+		return await this.post('/api/v1/topics', {});
 	}
 }
 

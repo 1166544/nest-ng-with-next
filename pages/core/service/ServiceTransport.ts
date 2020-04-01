@@ -1,5 +1,4 @@
 import { BaseService, IBaseOption } from './ServiceBase';
-import { ConfigDefault } from '@server/config/ConfigDefault';
 
 /**
  * 重写基类，中转服务
@@ -20,7 +19,7 @@ export class TransportService extends BaseService {
 	 * @memberof BaseService
 	 */
 	protected updateConfig(url: string): string {
-		return '/api/transport/getTransportData';
+		return `${this.options.baseUrl}/api/transport/createTest`;
 	}
 
 	/**
@@ -34,8 +33,8 @@ export class TransportService extends BaseService {
 	 */
 	protected transportConfig(url: string, config: any): any {
 		config.headers = {};
-		config.headers[ConfigDefault.X_REAL_URL] = url;
-		config.headers[ConfigDefault.X_REAL_BASE_URL] = this.options.baseUrl || '';
+		config.headers['x-real-url'] = url;
+		config.headers['x-real-base-url'] = this.options.baseUrl || '';
 
 		return config;
 	}
