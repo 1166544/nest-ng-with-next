@@ -1,4 +1,4 @@
-import { All, Controller, HttpCode, Req, HttpStatus } from '@nestjs/common';
+import { All, Controller, HttpCode, Req, HttpStatus, Post, Body } from '@nestjs/common';
 import { TransportService } from './TransportService';
 import { Routers } from '../../routers/RoutersServer';
 
@@ -40,5 +40,18 @@ export class TransportController {
 		} else {
 			return result.data;
 		}
+	}
+
+	/**
+	 * create test
+	 * @description Posts test controller
+	 * @param createCatDto
+	 */
+	@Post('createTest')
+	public async create(@Body() createCatDto: any): Promise<any> {
+		return {
+			test: 'test',
+			id: 1223
+		};
 	}
 }

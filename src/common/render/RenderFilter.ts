@@ -21,7 +21,7 @@ class RenderFilter implements ExceptionFilter {
 	}
 
 	/**
-	 * Nest不知道next如何处理构建资产的路由，因此让next处理未由控制器处理的任何请求的路由
+	 * Nest不知道next如何处理构建站点路由，因此让next处理未由控制器处理的任何请求的路由
 	 * 交由Next接管
 	 * @param err
 	 * @param ctx

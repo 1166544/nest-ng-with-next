@@ -11,7 +11,7 @@ import RenderService from '@server/common/render/RenderService';
 class RenderMiddleware implements NestMiddleware {
 	private readonly renderService: RenderService;
 
-	public constructor(renderService: RenderService) {
+	constructor(renderService: RenderService) {
 		this.renderService = renderService;
 	}
 

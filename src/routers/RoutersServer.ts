@@ -14,7 +14,7 @@ export class Routers {
 	/**
 	 * transport router /api/transport/....visit
 	 */
-	public static TRANSPORT_MODULE_ROUTER: string = 'transport';
+	public static TRANSPORT_MODULE_ROUTER: string = '/api/transport';
 
 	/**
 	 * local router /api/local/....visit
