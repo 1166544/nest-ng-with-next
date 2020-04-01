@@ -2,6 +2,7 @@ import React from 'react';
 import { IProps } from '../../model/ModelProps';
 import { IInitialProps } from '../../model/ModelInitialProps';
 import Head from 'next/head';
+import newsService from '@src/service/ServiceNews';
 
 import './Index.less';
 
@@ -21,8 +22,10 @@ class Index extends React.Component<IProps> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public static getInitialProps({ query }: IInitialProps): IInitialProps {
-		return query;
+	public static async getInitialProps({ query }: IInitialProps): Promise<any> {
+		const res: any = await newsService.getTopics();
+
+		return { data: res.data, query };
 	}
 
 	/**
