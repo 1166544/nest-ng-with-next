@@ -5,7 +5,8 @@ import {
 	Render,
 	UseInterceptors,
 	Res,
-	Param
+	Param,
+	Query
 } from '@nestjs/common';
 import { DetailService } from './DetailService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -24,7 +25,23 @@ export class DetailController {
 	}
 
 	/**
-	 * ID处理
+	 * 动态参数ID处理
+	 *
+	 * @param {NextResponse} res
+	 * @param {string} id
+	 * @returns
+	 * @memberof DetailController
+	 */
+	@Get('descriptionQuery')
+	@Render('detail/Detail')
+	public descriptionQuery(@Res() res: any, @Query() query: any): any {
+		return {
+			id: query.id
+		};
+	}
+
+	/**
+	 * 动态参数ID处理
 	 *
 	 * @param {NextResponse} res
 	 * @param {string} id
