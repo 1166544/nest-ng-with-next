@@ -11,7 +11,7 @@ switch (arguments) {
 	case 'development':
 		file =
 `CACHE_TTL=5
-ENV=dev`;
+ENV=development`;
 		fs.writeFileSync(coverPath, file);
 		console.log(replacestr, arguments);
 		break;
@@ -19,7 +19,7 @@ ENV=dev`;
 	case 'production':
 		file =
 `CACHE_TTL=5
-ENV=prod`;
+ENV=production`;
 		fs.writeFileSync(coverPath, file);
 		console.log(replacestr, arguments);
 		break;
@@ -27,7 +27,7 @@ ENV=prod`;
 	default:
 		file =
 `CACHE_TTL=5
-ENV=prod`;
+ENV=production`;
 		fs.writeFileSync(coverPath, file);
 		console.log(replacestr, arguments);
 		break;
