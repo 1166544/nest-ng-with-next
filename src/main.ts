@@ -17,8 +17,8 @@ import cookieParser from 'cookie-parser';
  *
  */
 async function bootstrap(): Promise<any> {
-	const dev: boolean = process.env.NODE_ENV !== 'production';
-	const app: any = Next({ dev });
+	const envFlag: boolean = process.env.NODE_ENV !== 'production';
+	const app: any = Next({ dev: envFlag });
 
 	await app.prepare();
 

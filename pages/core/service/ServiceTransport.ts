@@ -19,7 +19,7 @@ export class TransportService extends BaseService {
 	 * @memberof BaseService
 	 */
 	protected updateConfig(url: string): string {
-		return `${this.options.baseUrl}/api/transport/createTest`;
+		return `${this.options.baseUrl}/api/transport/getTransportData`;
 	}
 
 	/**

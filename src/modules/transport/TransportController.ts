@@ -27,19 +27,23 @@ export class TransportController {
 	@HttpCode(HttpStatus.OK)
 	@All('getTransportData')
 	public async getTransportData(@Req() request: any): Promise<any> {
+		console.log('test...');
 
-		let result: any = await this.transportService.getTransportData(request);
+		// let result: any = await this.transportService.getTransportData(request);
 
-		if (result === undefined) {
-			result = {
-				code: HttpStatus.INTERNAL_SERVER_ERROR,
-				message: 'Internal server error'
-			};
+		// if (result === undefined) {
+		// 	result = {
+		// 		code: HttpStatus.INTERNAL_SERVER_ERROR,
+		// 		message: 'Internal server error'
+		// 	};
 
-			return result;
-		} else {
-			return result.data;
-		}
+		// 	return result;
+		// } else {
+		// 	return result.data;
+		// }
+		return {
+			test: 'test'
+		};
 	}
 
 	/**

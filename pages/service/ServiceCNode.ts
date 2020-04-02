@@ -24,16 +24,6 @@ class CnNodeService extends TransportService {
 	public async getTopics(): Promise<any> {
 		return await this.get('/api/v1/topics');
 	}
-
-	/**
-	 * test
-	 *
-	 * @returns {Promise<any>}
-	 * @memberof CnNodeService
-	 */
-	public async getTest(): Promise<any> {
-		return await this.post('/api/v1/topics', {});
-	}
 }
 
 export default new CnNodeService();
