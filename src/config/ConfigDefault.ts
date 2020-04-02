@@ -1,4 +1,5 @@
 /**
+import { IChannelData } from '../../.history/src/config/ConfigDefault_20200402182018';
  * 基础配置
  *
  * @export
@@ -10,6 +11,11 @@ export class ConfigDefault {
 	 * X real url of config default
 	 */
 	public static X_REAL_URL: string = 'x-real-url';
+
+	/**
+	 * X channel of config default
+	 */
+	public static X_CHANNEL: string = 'x-channel';
 
 	/**
 	 * X real base url of config default
@@ -42,6 +48,23 @@ export class ConfigDefault {
 	}
 
 	/**
+	 * 频道URL配置数据
+	 *
+	 * @type {IChannel}
+	 * @memberof ConfigDefault
+	 */
+	public channelConfigData: IChannel = {
+		cnnode: {
+			url: 'https://cnodejs.org',
+			type: 'extrenal'
+		},
+		local: {
+			url: 'http://127.0.0.1',
+			type: 'internal'
+		}
+	};
+
+	/**
 	 * 服务器访问路径
 	 *
 	 * @type {string}
@@ -63,14 +86,6 @@ export class ConfigDefault {
 	public monitorAllLogs: boolean = false;
 
 	/**
-	 * 本地URL地址
-	 *
-	 * @type {string}
-	 * @memberof ConfigDefault
-	 */
-	public localUrl: string = 'http://127.0.0.1';
-
-	/**
 	 * charles抓包地址
 	 */
 	public httpProxyUrl: string = 'http://127.0.0.1';
@@ -81,12 +96,28 @@ export class ConfigDefault {
 	public httpProxyPort: number = 8888;
 
 	/**
-	 * cnode配置
+	 * 依据TAG名字获取对应频道URL
 	 *
-	 * @type {string}
+	 * @param {string} tagName
+	 * @returns {string}
 	 * @memberof ConfigDefault
 	 */
-	public cnodeUrl: string = 'https://cnodejs.org';
+	public getChannelUrlByTagName(tagName: string): string {
+		let url: string = '';
+		switch (tagName) {
+			case 'cnnode':
+				url = this.channelConfigData.cnnode.url;
+				break;
+			case 'local':
+				url = this.channelConfigData.local.url;
+				break;
+			default:
+				url = this.channelConfigData.local.url;
+				break;
+		}
+
+		return url;
+	}
 
 	/**
 	 * proxy-agent地址
@@ -143,4 +174,52 @@ export class ConfigDefault {
 			max: 100 // limit each IP to 100 requests per windowMs
 		};
 	}
+}
+
+/**
+ * 频道配置
+ *
+ * @export
+ * @interface IChannel
+ */
+export interface IChannel {
+	/**
+	 * cnnode频道
+	 *
+	 * @type {IChannelData}
+	 * @memberof IChannel
+	 */
+	cnnode: IChannelData;
+
+	/**
+	 * 本地频道
+	 *
+	 * @type {IChannelData}
+	 * @memberof IChannel
+	 */
+	local: IChannelData;
+}
+
+/**
+ * 频道数据
+ *
+ * @export
+ * @interface IChannelData
+ */
+export interface IChannelData {
+	/**
+	 * 频道URL
+	 *
+	 * @type {string}
+	 * @memberof IChannelData
+	 */
+	url: string;
+
+	/**
+	 * 频道类型
+	 *
+	 * @type {string}
+	 * @memberof IChannelData
+	 */
+	type: string
 }

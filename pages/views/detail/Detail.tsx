@@ -32,7 +32,7 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public render(): any {
-		// console.log('pageData...', this.props);
+		console.log('pageData...', JSON.stringify(this.props));
 
 		return (
 			<div>

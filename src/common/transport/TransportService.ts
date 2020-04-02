@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { stringify } from 'querystring';
 import { BaseHttpClient } from '../middleware/MiddlewareHttp';
 import { ConfigDefault } from '@server/config/ConfigDefault';
+import configParser from '@server/common/config/ConfigParser';
 
 /**
  * 中转接口服务
@@ -10,9 +11,25 @@ import { ConfigDefault } from '@server/config/ConfigDefault';
  * @class TransportService
  */
 export class TransportService extends BaseHttpClient {
+
 	constructor() {
 		super();
 		// console.log(this.configService.getConfig().monitorAllLogs);
+	}
+
+	/**
+	 * 依据TAG获取对应的真实URL
+	 *
+	 * @private
+	 * @param {string} tagName
+	 * @returns {string}
+	 * @memberof TransportService
+	 */
+	private getRealChannelByTag(tagName: string): string {
+		const config: ConfigDefault = configParser.getConfig();
+		const url: string = config.getChannelUrlByTagName(tagName);
+
+		return url;
 	}
 
 	/**
@@ -21,7 +38,7 @@ export class TransportService extends BaseHttpClient {
 	public async getTransportData(request: any): Promise<any> {
 
 		const url: string = request.headers[ConfigDefault.X_REAL_URL];
-		const baseURL: string = request.headers[ConfigDefault.X_REAL_BASE_URL];
+		const baseURL: string = this.getRealChannelByTag(request.headers[ConfigDefault.X_CHANNEL] || 'cnnode');
 		const contentType: string = request.headers[ConfigDefault.CONTENT_TYPE];
 
 		let headers: any = {};

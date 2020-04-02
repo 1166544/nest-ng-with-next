@@ -1,4 +1,4 @@
-import { ConfigDefault } from './ConfigDefault';
+import { ConfigDefault, IChannel } from './ConfigDefault';
 
 /**
  * 开发服配置
@@ -14,11 +14,20 @@ export class ConfigDev extends ConfigDefault {
 	}
 
 	/**
-	 * 覆盖本地URL地址
+	 * 频道URL配置数据
 	 *
-	 * @type {string}
+	 * @type {IChannel}
 	 * @memberof ConfigDefault
 	 */
-	public localUrl: string = 'http://localhost';
+	public channelConfigData: IChannel = {
+		cnnode: {
+			url: 'https://cnodejs.org',
+			type: 'extrenal'
+		},
+		local: {
+			url: 'http://localhost',
+			type: 'internal'
+		}
+	};
 }
 

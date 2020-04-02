@@ -13,6 +13,9 @@ export interface IBaseOption {
 
 	/** 是否本地调用 */
 	isLocalHost: boolean;
+
+	/** 调用后台频道 */
+	channel: string;
 }
 
 /**
@@ -42,6 +45,14 @@ export class BaseOption implements IBaseOption, IVO {
 	 * @memberof BaseOption
 	 */
 	public isLocalHost: boolean = false;
+
+	/**
+	 * 调用后台频道
+	 *
+	 * @type {string}
+	 * @memberof BaseOption
+	 */
+	public channel: string = '';
 
 	/**
 	 * 更新数据

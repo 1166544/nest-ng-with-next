@@ -12,6 +12,7 @@ class CnNodeService extends TransportService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
 		baseOption.baseUrl = configService.getConfig().localUrl;
+		baseOption.channel = 'cnnode';
 		super(baseOption);
 	}
 

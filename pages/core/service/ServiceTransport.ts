@@ -34,7 +34,7 @@ export class TransportService extends BaseService {
 	protected transportConfig(url: string, config: any): any {
 		config.headers = {};
 		config.headers['x-real-url'] = url;
-		config.headers['x-real-base-url'] = this.options.baseUrl || '';
+		config.headers['x-channel'] = this.options.channel || '';
 
 		return config;
 	}
