@@ -3,7 +3,9 @@ import {
 	Controller,
 	Get,
 	Render,
-	UseInterceptors
+	UseInterceptors,
+	Res,
+	Param
 } from '@nestjs/common';
 import { DetailService } from './DetailService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -17,7 +19,25 @@ import { Routers } from '@server/routers/RoutersServer';
 @Controller(Routers.DETAIL_MODULE_ROUTER)
 @UseInterceptors(CacheInterceptor)
 export class DetailController {
-	constructor(private readonly detailService: DetailService) {}
+	constructor(private readonly detailService: DetailService) {
+		// hole
+	}
+
+	/**
+	 * ID处理
+	 *
+	 * @param {NextResponse} res
+	 * @param {string} id
+	 * @returns
+	 * @memberof DetailController
+	 */
+	@Get('description/:id')
+	@Render('detail/Detail')
+	public description(@Res() res: any, @Param('id') id: string): any {
+		return {
+			id
+		};
+	}
 
 	/**
 	 * 其它页入口

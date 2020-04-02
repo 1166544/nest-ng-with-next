@@ -33,6 +33,7 @@ class Index extends React.Component<IProps> {
 
 		return (
 			<div>
+				<div>{this.props.id}</div>
 				<div>{this.props.content}</div>
 				<div>Detail Page render content {this.props.title}</div>
 			</div>

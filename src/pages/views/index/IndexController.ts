@@ -3,7 +3,8 @@ import {
 	Controller,
 	Get,
 	Render,
-	UseInterceptors
+	UseInterceptors,
+	Request
 } from '@nestjs/common';
 import { IndexService } from './IndexService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -27,7 +28,7 @@ export class IndexController {
 	 */
 	@Get('index')
 	@Render('index/Index')
-	public detail(): any {
+	public detail(@Request() req: any): any {
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();
 	}

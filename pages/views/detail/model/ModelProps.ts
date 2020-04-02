@@ -9,4 +9,5 @@ import { IInitialProps } from './ModelInitialProps';
 export interface IProps extends IInitialProps {
 	title: string;
 	content: string;
+	id?: string;
 }
