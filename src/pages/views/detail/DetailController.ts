@@ -25,7 +25,7 @@ export class DetailController {
 	 * @returns {*}
 	 * @memberof DetailController
 	 */
-	@Get('detailPage')
+	@Get('index')
 	@Render('detail/Detail')
 	public detail(): any {
 		// 返回给页面数据内容

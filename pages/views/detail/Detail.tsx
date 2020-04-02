@@ -1,6 +1,6 @@
 import React from 'react';
-import { IProps } from '../../model/ModelProps';
-import { IInitialProps } from '../../model/ModelInitialProps';
+import { IProps } from './model/ModelProps';
+import { IInitialProps } from './model/ModelInitialProps';
 
 /**
  * 渲染页面
@@ -29,7 +29,7 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public render(): any {
-		console.log('pageData...', this.props);
+		// console.log('pageData...', this.props);
 
 		return (
 			<div>

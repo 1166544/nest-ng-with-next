@@ -1,6 +1,6 @@
 import React from 'react';
-import { IProps } from '../../model/ModelProps';
-import { IInitialProps } from '../../model/ModelInitialProps';
+import { IProps } from './model/ModelProps';
+import { IInitialProps } from './model/ModelInitialProps';
 import Head from 'next/head';
 import cnNodeService from '@src/service/ServiceCNode';
 
@@ -35,7 +35,7 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public render(): any {
-		console.log('pageData...', this.props);
+		// console.log('pageData...', this.props);
 
 		return (
 			<div>

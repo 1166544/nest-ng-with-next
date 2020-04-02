@@ -15,10 +15,7 @@ export class AppService {
 	 * @returns {*}
 	 * @memberof AppService
 	 */
-	public root(): any {
-		return {
-			title: 'Test page',
-			content: 'test content'
-		};
+	public root(): string {
+		return 'Welcome Apollo!';
 	}
 }

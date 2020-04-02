@@ -1,5 +1,5 @@
 /**
- * Router list
+ * 顶层路由列表
  *
  * @export
  * @class Routers
@@ -25,4 +25,9 @@ export class Routers {
 	 * detail router /detail/....visit
 	 */
 	public static DETAIL_MODULE_ROUTER: string = 'detail';
+
+	/**
+	 * detail router /index/....visit
+	 */
+	public static INDEX_MODULE_ROUTER: string = 'index';
 }
