@@ -1,6 +1,7 @@
 import React from 'react';
 import { IProps } from './model/ModelProps';
 import { IInitialProps } from './model/ModelInitialProps';
+import cnNodeService from '@src/service/ServiceCNode';
 
 /**
  * 渲染页面
@@ -18,8 +19,10 @@ class Index extends React.Component<IProps> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public static getInitialProps({ query }: IInitialProps): IInitialProps {
-		return query;
+	public static async getInitialProps({ query }: IInitialProps): Promise<any> {
+		const res: any = await cnNodeService.getTopics();
+
+		return { data: res.data, query };
 	}
 
 	/**
@@ -33,7 +36,7 @@ class Index extends React.Component<IProps> {
 
 		return (
 			<div>
-				<div>{this.props.id}</div>
+				<div>{this.props.query.id}</div>
 				<div>{this.props.content}</div>
 				<div>Detail Page render content {this.props.title}</div>
 			</div>
