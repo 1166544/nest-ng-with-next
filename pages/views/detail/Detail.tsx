@@ -20,8 +20,12 @@ class Index extends React.Component<IProps> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public static async getInitialProps({ query }: IInitialProps): Promise<any> {
-		const res: any = await cnNodeService.getTopics();
+	public static async getInitialProps({ query, req }: IInitialProps): Promise<any> {
+		// 注册安全选项
+		localService.registerSecurity(req);
+
+		// const res: any = await cnNodeService.getTopics();
+		const res: any = await localService.getCartsListData([]);
 
 		return { data: res.data, query };
 	}
@@ -36,11 +40,11 @@ class Index extends React.Component<IProps> {
 		// const res: any = await cnNodeService.getTopics();
 
 		// 调用本地接口示例
-		const res: any = await localService.getCartsListData([]);
+		// const res: any = await localService.getCartsListData([]);
 
-		console.log('fetch data res.. from client', res);
+		// console.log('fetch data res.. from client', res);
 
-		return { data: res.data };
+		// return { data: res.data };
 	}
 
 	/**

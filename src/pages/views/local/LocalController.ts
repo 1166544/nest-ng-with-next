@@ -5,7 +5,8 @@ import {
 	Render,
 	UseInterceptors,
 	Request,
-	Post
+	Post,
+	Response
 } from '@nestjs/common';
 import { LocalService } from './LocalService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -28,7 +29,9 @@ export class LocalController {
 	 * @memberof DetailController
 	 */
 	@Post('getTestInfo')
-	public detail(@Request() req: any): any {
+	public detail(@Response() res: any, @Request() req: any): any {
+		console.log(req);
+
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();
 	}

@@ -1,5 +1,6 @@
 import { IVO } from '../interfaces/IVo';
 import configService from './ServiceConfig';
+import { AxiosRequestConfig } from 'axios';
 
 /**
  * 基础配置接口
@@ -76,9 +77,59 @@ export class BaseService {
 	[x: string]: any;
 	protected apiServiceInstance: any;
 	protected options: IBaseOption;
+	protected cookies: any;
 
 	constructor(optios: IBaseOption) {
 		this.options = optios;
+	}
+
+	/**
+	 * 注册安全内容
+	 *
+	 * @param {*} req
+	 * @memberof BaseService
+	 */
+	public registerSecurity(req: any): void {
+		this.cookies = req && req.cookies ? req.cookies : {};
+	}
+
+	/**
+	 * 添加CSRF头部
+	 *
+	 * @private
+	 * @param {AxiosRequestConfig} request
+	 * @memberof BaseService
+	 */
+	private addCsrf(request: AxiosRequestConfig): AxiosRequestConfig {
+		if (request && request.headers) {
+			request.headers['csrf-token'] = this.getCsrfToken();
+			request.headers['xsrf-token'] = this.getCsrfToken();
+			request.headers['x-csrf-token'] = this.getCsrfToken();
+			request.headers['x-xsrf-token'] = this.getCsrfToken();
+			request.headers['CSRF-Token'] = this.getCsrfToken();
+			request.data._csrf = this.getCsrfToken();
+			request.headers.cookie = '_csrf=YI4wi4d3ZddMrM0dQScGpqT5';
+		}
+
+		return request;
+	}
+
+	/**
+	 * 组织加工TOKEN
+	 *
+	 * @private
+	 * @returns {string}
+	 * @memberof BaseService
+	 */
+	private getCsrfToken(): string {
+		if (this.cookies && this.cookies._csrf) {
+			console.log(this.cookies._csrf);
+
+			return this.cookies._csrf;
+		} else {
+			// TODO: client 端内容
+			return '';
+		}
 	}
 
 	/**
@@ -114,6 +165,18 @@ export class BaseService {
 		if (!this.apiServiceInstance) {
 			this.apiServiceInstance = configService.getAxios();
 		}
+
+		this.apiServiceInstance.defaults.withCredentials = true;
+
+		// 请求拦截,加上CSRF
+		this.apiServiceInstance.interceptors.request.use(
+			(request: AxiosRequestConfig) => {
+				return this.addCsrf(request);
+			},
+			(error: any) => {
+				// hole
+			}
+		);
 
 		return this.apiServiceInstance;
 	}

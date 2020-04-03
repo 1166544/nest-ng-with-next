@@ -5,4 +5,5 @@
  */
 export interface IInitialProps {
 	query: any;
+	req: any;
 }

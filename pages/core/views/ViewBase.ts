@@ -1,4 +1,6 @@
 import { IView } from '../interfaces/IView';
+import React from 'react';
+import { IProps } from '@src/views/detail/model/ModelProps';
 
 /**
  * 基础视图类
@@ -8,7 +10,7 @@ import { IView } from '../interfaces/IView';
  * @extends {Vue}
  * @implements {IView}
  */
-export class BaseView implements IView {
+export class BaseView extends React.Component<IProps> implements IView {
 
 	/**
 	 * SEO Title

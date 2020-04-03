@@ -6,7 +6,8 @@ import {
 	UseInterceptors,
 	Res,
 	Param,
-	Query
+	Query,
+	Req
 } from '@nestjs/common';
 import { DetailService } from './DetailService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -34,7 +35,9 @@ export class DetailController {
 	 */
 	@Get('descriptionQuery')
 	@Render('detail/Detail')
-	public descriptionQuery(@Res() res: any, @Query() query: any): any {
+	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any): any {
+		console.log(req);
+
 		return {
 			id: query.id
 		};

@@ -36,7 +36,7 @@ export class TransportService extends BaseHttpClient {
 	 * 中转
 	 */
 	public async getTransportData(request: any): Promise<any> {
-
+		// console.log('xxss', request);
 		const url: string = request.headers[ConfigDefault.X_REAL_URL];
 		const baseURL: string = this.getRealChannelByTag(request.headers[ConfigDefault.X_CHANNEL] || 'cnnode');
 		const contentType: string = request.headers[ConfigDefault.CONTENT_TYPE];
