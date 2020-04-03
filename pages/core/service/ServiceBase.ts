@@ -81,6 +81,35 @@ export class BaseService {
 		this.options = optios;
 	}
 
+	/**
+	 * uuid
+	 *
+	 * @returns
+	 * @memberof QlBridge
+	 */
+	protected getUUID(): string {
+		let s: Array<any> = [];
+		const hexDigits: string = '0123456789abcdef!@#$%^&*()_+-';
+		const hashLength: number = 36;
+		const hashHex: number = 0x10;
+		const pos14: number = 14;
+		const pos19: number = 19;
+		const pos8: number = 8;
+		const pos13: number = 13;
+		const pos18: number = 18;
+		const pos23: number = 23;
+		for (let i: number = 0; i < hashLength; i++) {
+			s[i] = hexDigits.substr(Math.floor(Math.random() * hashHex), 1);
+		}
+		s[pos14] = '4';
+		s[pos19] = hexDigits.substr((s[pos19] & 0x3) | 0x8, 1);
+		s[pos8] = s[pos13] = s[pos18] = s[pos23] = '-';
+
+		const uuid: string = s.join('');
+
+		return uuid;
+	}
+
 	protected get apiService(): any {
 		if (!this.apiServiceInstance) {
 			this.apiServiceInstance = configService.getAxios();

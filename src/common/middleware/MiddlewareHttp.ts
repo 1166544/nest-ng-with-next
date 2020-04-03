@@ -29,7 +29,7 @@ export class BaseHttpClient {
 		// 请求拦截
 		this.instance.interceptors.request.use(
 			(request: AxiosRequestConfig) => {
-				request.headers.startInvokeTime = Date.now();
+				request.headers['x-start-nvoke-time'] = Date.now();
 				// 开发模式则添加代理-charles
 				if (configParser.getConfig().getEnv() === ConfigDefault.ENV_DEV) {
 					process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
