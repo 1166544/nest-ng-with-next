@@ -26,6 +26,18 @@ class Index extends React.Component<IProps> {
 	}
 
 	/**
+	 * 客户端调用获取数据
+	 *
+	 * @memberof Index
+	 */
+	public async componentDidMount(): Promise<any> {
+		const res: any = await cnNodeService.getTopics();
+		console.log('fetch data res.. from client', res);
+
+		return { data: res.data };
+	}
+
+	/**
 	 * 渲染
 	 *
 	 * @returns
