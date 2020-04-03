@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
 
 /**
- * DetailService
+ * LocalService
  *
  * @export
- * @class IndexService
+ * @class LocalService
  */
 @Injectable()
-export class IndexService {
+export class LocalService {
 
 	/**
 	 * getDetailInfo
 	 *
 	 * @returns {*}
-	 * @memberof IndexService
+	 * @memberof LocalService
 	 */
 	public getIndexInfo(): any {
 		return {
-			title: 'Test page detail',
+			title: `Test page detail ${Date.now()}`,
 			content: 'test content detail'
 		};
 	}

@@ -7,6 +7,7 @@ import RenderModule from './common/render/RenderModule';
 import { TransportModule } from './common/transport/TransportModule';
 import { DetailModule } from './pages/views/detail/DetailModule';
 import { IndexModule } from './pages/views/index/IndexModule';
+import { LocalModule } from './pages/views/local/LocalModule';
 
 /**
  * app module
@@ -21,7 +22,8 @@ import { IndexModule } from './pages/views/index/IndexModule';
 		ConfigModule,
 		TransportModule,
 		DetailModule,
-		IndexModule
+		IndexModule,
+		LocalModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

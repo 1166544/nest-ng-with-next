@@ -19,7 +19,7 @@ export class Routers {
 	/**
 	 * local router /api/local/....visit
 	 */
-	public static LOCAL_MODULE_ROUTER: string = 'local';
+	public static LOCAL_MODULE_ROUTER: string = 'api/local';
 
 	/**
 	 * detail router /detail/....visit

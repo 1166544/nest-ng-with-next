@@ -4,30 +4,30 @@ import {
 	Get,
 	Render,
 	UseInterceptors,
-	Request
+	Request,
+	Post
 } from '@nestjs/common';
-import { IndexService } from './IndexService';
+import { LocalService } from './LocalService';
 import { Routers } from '@server/routers/RoutersServer';
 
 /**
  * Detail控制器
  *
  * @export
- * @class IndexController
+ * @class LocalController
  */
-@Controller(Routers.INDEX_MODULE_ROUTER)
+@Controller(Routers.LOCAL_MODULE_ROUTER)
 @UseInterceptors(CacheInterceptor)
-export class IndexController {
-	constructor(private readonly indexService: IndexService) {}
+export class LocalController {
+	constructor(private readonly indexService: LocalService) {}
 
 	/**
 	 * 其它页入口
 	 *
 	 * @returns {*}
-	 * @memberof IndexController
+	 * @memberof DetailController
 	 */
-	@Get('index')
-	@Render('index/Index')
+	@Post('getTestInfo')
 	public detail(@Request() req: any): any {
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();

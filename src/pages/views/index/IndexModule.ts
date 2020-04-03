@@ -4,10 +4,10 @@ import { IndexService } from './IndexService';
 import { CacheModule } from '@server/common/cache/CacheModule';
 
 /**
- * detail module
+ * IndexModule
  *
  * @export
- * @class DetailModule
+ * @class IndexModule
  */
 @Module({
 	imports: [

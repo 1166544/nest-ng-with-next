@@ -41,6 +41,7 @@ export class TransportService extends BaseHttpClient {
 		const baseURL: string = this.getRealChannelByTag(request.headers[ConfigDefault.X_CHANNEL] || 'cnnode');
 		const contentType: string = request.headers[ConfigDefault.CONTENT_TYPE];
 
+		// 头部信息全量中转
 		let headers: any = {...request.headers};
 		let requestObj: AxiosRequestConfig = {
 			data: request.body,

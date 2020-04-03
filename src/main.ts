@@ -20,6 +20,7 @@ async function bootstrap(): Promise<any> {
 	const envFlag: boolean = process.env.NODE_ENV !== 'production';
 	const app: any = Next({ dev: envFlag });
 
+	// ready
 	await app.prepare();
 
 	const server: any = await NestFactory.create(AppModule);
@@ -28,12 +29,12 @@ async function bootstrap(): Promise<any> {
 	const serverPort: number = Number(process.env.PORT) || configer.port;
 	const host: string = configer.serverAdderess;
 
+	// render
 	renderService.setRequestHandler(app.getRequestHandler());
 	renderService.setRenderer(app.render.bind(app));
 	renderService.setErrorRenderer(app.renderError.bind(app));
 	renderService.bindHttpServer(server.getHttpAdapter());
 
-	// server.setGlobalPrefix(configer.getGlobalPrefix());
 	server.use(new RenderMiddleware(renderService).resolve());
 	server.useGlobalFilters(
 		new RenderFilter(
@@ -46,9 +47,10 @@ async function bootstrap(): Promise<any> {
 	server.use(helmet());
 	server.enableCors();
 	server.use(cookieParser());
-	// server.use(csurf({ cookie: true }));
+	server.use(csurf({ cookie: true }));
 	server.use(rateLimit(configer.getRateConfig()));
 
+	// port listen
 	await server.listen(serverPort, host, () => {
 		Consola.ready({
 			message: `Server listening on http://${host}:${serverPort}`,

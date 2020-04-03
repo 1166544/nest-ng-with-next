@@ -15,7 +15,7 @@ import { Routers } from '@server/routers/RoutersServer';
  * Detail控制器
  *
  * @export
- * @class AppController
+ * @class DetailController
  */
 @Controller(Routers.DETAIL_MODULE_ROUTER)
 @UseInterceptors(CacheInterceptor)

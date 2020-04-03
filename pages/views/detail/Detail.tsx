@@ -2,6 +2,7 @@ import React from 'react';
 import { IProps } from './model/ModelProps';
 import { IInitialProps } from './model/ModelInitialProps';
 import cnNodeService from '@src/service/ServiceCNode';
+import localService from '@src/service/ServiceLocal';
 
 /**
  * 渲染页面
@@ -31,7 +32,12 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public async componentDidMount(): Promise<any> {
-		const res: any = await cnNodeService.getTopics();
+		// 调用外部接口示例
+		// const res: any = await cnNodeService.getTopics();
+
+		// 调用本地接口示例
+		const res: any = await localService.getCartsListData([]);
+
 		console.log('fetch data res.. from client', res);
 
 		return { data: res.data };
