@@ -30,7 +30,7 @@ export class LocalController {
 	 */
 	@Post('getTestInfo')
 	public detail(@Response() res: any, @Request() req: any): any {
-		console.log(req);
+		// console.log(req);
 
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();

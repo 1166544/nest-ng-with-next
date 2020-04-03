@@ -123,7 +123,7 @@ export class BaseService {
 	 */
 	private getCsrfToken(): string {
 		if (this.cookies && this.cookies._csrf) {
-			console.log(this.cookies._csrf);
+			// console.log(this.cookies._csrf);
 
 			return this.cookies._csrf;
 		} else {

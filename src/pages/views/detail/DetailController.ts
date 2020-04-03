@@ -36,7 +36,7 @@ export class DetailController {
 	@Get('descriptionQuery')
 	@Render('detail/Detail')
 	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any): any {
-		console.log(req);
+		// console.log(req);
 
 		return {
 			id: query.id
