@@ -22,12 +22,12 @@ class Index extends React.Component<IProps> {
 	 */
 	public static async getInitialProps({ query, req }: IInitialProps): Promise<any> {
 		// 注册安全选项
-		localService.registerSecurity(req);
+		localService.registerSecurity(req, query);
 
 		// const res: any = await cnNodeService.getTopics();
 		const res: any = await localService.getCartsListData([]);
 
-		return { data: res.data, query };
+		return { data: 'res.data', query };
 	}
 
 	/**

@@ -17,6 +17,7 @@
 		"build:ui": "npx next build",
 		"build": "npm run lint && cross-env NODE_ENV=production npm run build:clean && npm run build:server && npm run build:ui",
 		"start": "npm run cover && cross-env NODE_ENV=production node --require reflect-metadata .next/production-server/Main.js",
+		"debug": "npm run lint && cross-env NODE_ENV=development nodemon --config nodemon-debug.json",
 		"cover": "node build/BuildCover.js",
 		"lint": "tslint -p tsconfig.json -c tslint.json",
 		"lintfix": "tslint -p tsconfig.json --fix",

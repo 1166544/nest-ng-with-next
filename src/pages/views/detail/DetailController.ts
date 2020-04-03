@@ -39,6 +39,7 @@ export class DetailController {
 		// console.log(req);
 
 		return {
+			token: req.csrfToken(),
 			id: query.id
 		};
 	}

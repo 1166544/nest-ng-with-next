@@ -89,8 +89,10 @@ export class BaseService {
 	 * @param {*} req
 	 * @memberof BaseService
 	 */
-	public registerSecurity(req: any): void {
-		this.cookies = req && req.cookies ? req.cookies : {};
+	public registerSecurity(req: any, query: any): void {
+		// this.cookies = req && req.cookies ? req.cookies : {};
+		this.cookies = query.token;
+		console.log(this.cookies);
 	}
 
 	/**
@@ -102,13 +104,7 @@ export class BaseService {
 	 */
 	private addCsrf(request: AxiosRequestConfig): AxiosRequestConfig {
 		if (request && request.headers) {
-			request.headers['csrf-token'] = this.getCsrfToken();
-			request.headers['xsrf-token'] = this.getCsrfToken();
-			request.headers['x-csrf-token'] = this.getCsrfToken();
 			request.headers['x-xsrf-token'] = this.getCsrfToken();
-			request.headers['CSRF-Token'] = this.getCsrfToken();
-			request.data._csrf = this.getCsrfToken();
-			request.headers.cookie = '_csrf=YI4wi4d3ZddMrM0dQScGpqT5';
 		}
 
 		return request;
@@ -122,14 +118,15 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	private getCsrfToken(): string {
-		if (this.cookies && this.cookies._csrf) {
-			// console.log(this.cookies._csrf);
+		return this.cookies;
+		// if (this.cookies && this.cookies._csrf) {
+		// 	// console.log(this.cookies._csrf);
 
-			return this.cookies._csrf;
-		} else {
-			// TODO: client 端内容
-			return '';
-		}
+		// 	return this.cookies._csrf;
+		// } else {
+		// 	// TODO: client 端内容
+		// 	return '';
+		// }
 	}
 
 	/**
