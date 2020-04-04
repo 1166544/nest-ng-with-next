@@ -20,12 +20,12 @@ class Index extends React.Component<IProps> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public static async getInitialProps({ query, req }: IInitialProps): Promise<any> {
+	public static async getInitialProps({ query, req, res }: IInitialProps): Promise<any> {
 		// 注册安全选项
-		localService.registerSecurity(req, query);
+		localService.registerSecurity(req, query, res);
 
 		// const res: any = await cnNodeService.getTopics();
-		const res: any = await localService.getCartsListData([]);
+		const responseData: any = await localService.getCartsListData([]);
 
 		return { data: 'res.data', query };
 	}

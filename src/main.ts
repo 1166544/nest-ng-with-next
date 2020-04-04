@@ -47,7 +47,7 @@ async function bootstrap(): Promise<any> {
 	server.use(helmet());
 	server.enableCors();
 	server.use(cookieParser());
-	server.use(csurf({ cookie: true }));
+	// server.use(csurf({ cookie: true }));
 	server.use(rateLimit(configer.getRateConfig()));
 
 	// port listen
