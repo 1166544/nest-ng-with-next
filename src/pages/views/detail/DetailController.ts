@@ -38,6 +38,7 @@ export class DetailController extends EngineController{
 	@Get('description-query')
 	@Render('detail/Detail')
 	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any, @Param('id') id: string): any {
+
 		return {
 			...this.getPublicParams(req),	// 公有参数
 			id								// 自定义参数
@@ -55,6 +56,7 @@ export class DetailController extends EngineController{
 	@Get('description/:id')
 	@Render('detail/Detail')
 	public description(@Req() req: any, @Res() res: any, @Param('id') id: string): any {
+
 		return {
 			...this.getPublicParams(req),	// 公有参数
 			id								// 自定义参数

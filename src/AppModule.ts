@@ -10,6 +10,7 @@ import { IndexModule } from './pages/views/index/IndexModule';
 import { LocalModule } from './pages/views/local/LocalModule';
 import { MiddlewareCode } from './common/middleware/MiddlewareCode';
 import { MiddlewareSecurity } from './common/middleware/MiddlewareSecurity';
+import { MiddlewareXSS } from './common/middleware/MiddlewareXSS';
 
 /**
  * app module
@@ -38,7 +39,8 @@ export class AppModule  implements NestModule{
 	public configure(consumer: MiddlewareConsumer): any {
 		consumer.apply(
 			MiddlewareCode,
-			MiddlewareSecurity
+			MiddlewareSecurity,
+			MiddlewareXSS
 		).forRoutes({ path: '*', method: RequestMethod.ALL });
 	}
 }
