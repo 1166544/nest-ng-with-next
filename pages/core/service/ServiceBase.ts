@@ -1,6 +1,6 @@
 import { IVO } from '../interfaces/IVo';
 import configService from './ServiceConfig';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 /**
  * 基础配置接口
@@ -80,6 +80,9 @@ export class BaseService {
 	protected tokenSource: any;
 	protected cookiesValue: string | undefined;
 	protected HEADER_TOKEN_KEY: string = 'x-xsrf-token';
+	protected HEADER_TRACE_ID: string = 'x-trace-id';
+	protected HEADER_CLIENT_START_TIME: string = 'x-client-start-time';
+	protected HEADER_CLIENT_END_TIME: string = 'x-client-end-time';
 
 	constructor(optios: IBaseOption) {
 		this.options = optios;
@@ -131,6 +134,12 @@ export class BaseService {
 			if (this.cookiesValue) {
 				request.headers.cookie = this.cookiesValue;
 			}
+
+			// 日志ID
+			request.headers[this.HEADER_TRACE_ID] = this.getUUID();
+
+			// 客户端发起请求时间
+			request.headers[this.HEADER_CLIENT_START_TIME] = Date.now();
 		}
 
 		return request;
@@ -190,6 +199,23 @@ export class BaseService {
 			},
 			(error: any) => {
 				// hole
+			}
+		);
+
+		// 响应拦截,回上返回时间截
+		this.apiServiceInstance.interceptors.response.use(
+			(response: AxiosResponse) => {
+				// 响应日志 response
+				// 客户端收到NODE数据响应时间
+				response.headers[this.HEADER_CLIENT_END_TIME] = Date.now();
+
+				return response;
+			},
+			(error: any) => {
+				// hole 采集响应错误日志 console.log('error.......', error);
+				// const copyHeaders: any = { ...(error.config.headers || {}) };
+				// `Error: ${error.syscall} ${error.errno} ${error.hostname} ${error.port}`
+				throw error;
 			}
 		);
 

@@ -21,6 +21,9 @@ export class BaseHttpClient {
 	 */
 	private readonly instance: AxiosInstance = Axios;
 
+	protected HEADER_SERVER_START_TIME: string = 'x-server-start-time';
+	protected HEADER_SERVER_END_TIME: string = 'x-server-end-time';
+
 	constructor() {
 		// 读取配置
 		const configer: ConfigDefault = configParser.getConfig();
@@ -29,7 +32,9 @@ export class BaseHttpClient {
 		// 请求拦截
 		this.instance.interceptors.request.use(
 			(request: AxiosRequestConfig) => {
-				request.headers['x-start-nvoke-time'] = Date.now();
+				// 服务端收到客户端请求并开始请求外部服务开始时间
+				request.headers[this.HEADER_SERVER_START_TIME] = Date.now();
+
 				// 开发模式则添加代理-charles
 				if (configParser.getConfig().getEnv() === ConfigDefault.ENV_DEV) {
 					process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -47,11 +52,12 @@ export class BaseHttpClient {
 		// 响应拦截
 		this.instance.interceptors.response.use(
 			(response: AxiosResponse) => {
-				// hole 采信响应日志 response
+				// 服务端请求外部服务响应时间
+				response.headers[this.HEADER_SERVER_END_TIME] = Date.now();
 
 				return response;
 			},
-			(error) => {
+			(error: any) => {
 				// hole 采集响应错误日志 console.log('error.......', error);
 				// const copyHeaders: any = { ...(error.config.headers || {}) };
 				// `Error: ${error.syscall} ${error.errno} ${error.hostname} ${error.port}`

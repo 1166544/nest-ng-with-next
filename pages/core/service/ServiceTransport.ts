@@ -35,7 +35,6 @@ export class TransportService extends BaseService {
 		config.headers = {};
 		config.headers['x-real-url'] = url;
 		config.headers['x-channel'] = this.options.channel || '';
-		config.headers['x-trace-id'] = this.getUUID();
 
 		return config;
 	}
