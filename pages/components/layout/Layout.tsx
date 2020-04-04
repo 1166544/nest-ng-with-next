@@ -23,6 +23,7 @@ class Layout extends React.Component<any> {
 	public render(): any {
 		return (
 			<div style={this.layoutStyle}>
+				<input type="hidden" name="_csrf" value={this.props.content}></input>
 				<Header />
 				{this.props.children}
 			</div>

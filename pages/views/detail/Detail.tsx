@@ -75,8 +75,7 @@ class Detail extends React.Component<IProps> {
 		// console.log('pageData...', JSON.stringify(this.props));
 
 		return (
-			<Layout>
-				<input type="hidden" name="_csrf" value={this.props.query.token}></input>
+			<Layout content={this.props.query.token}>
 				<div>test</div>
 				<div>{this.props.data}</div>
 				{/* <div>{this.props.query.token}</div> */}
