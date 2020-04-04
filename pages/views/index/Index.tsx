@@ -23,9 +23,9 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public static async getInitialProps({ query }: IInitialProps): Promise<any> {
-		const res: any = await cnNodeService.getTopics();
+		// const res: any = await cnNodeService.getTopics();
 
-		return { data: res.data, query };
+		return { data: 'res.data', query };
 	}
 
 	/**

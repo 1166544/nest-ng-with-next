@@ -3,6 +3,7 @@ import { IProps } from './model/ModelProps';
 import { IInitialProps } from './model/ModelInitialProps';
 import cnNodeService from '@src/service/ServiceCNode';
 import localService from '@src/service/ServiceLocal';
+import Header from '@src/components/header/Header';
 
 /**
  * 渲染页面
@@ -10,7 +11,7 @@ import localService from '@src/service/ServiceLocal';
  * @class Index
  * @extends {React.Component<IProps>}
  */
-class Index extends React.Component<IProps> {
+class Detail extends React.Component<IProps> {
 
 	/**
 	 * 服务端获取渲染页面数据
@@ -75,6 +76,9 @@ class Index extends React.Component<IProps> {
 
 		return (
 			<div>
+				<Header>
+					<p>header</p>
+				</Header>
 				<input type="hidden" name="_csrf" value={this.props.query.token}></input>
 				<div>test</div>
 				<div>{this.props.data}</div>
@@ -86,4 +90,4 @@ class Index extends React.Component<IProps> {
 	}
 }
 
-export default Index;
+export default Detail;
