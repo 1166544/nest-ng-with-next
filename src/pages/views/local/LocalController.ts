@@ -6,7 +6,8 @@ import {
 	UseInterceptors,
 	Request,
 	Post,
-	Response
+	Response,
+	HttpStatus
 } from '@nestjs/common';
 import { LocalService } from './LocalService';
 import { Routers } from '@server/routers/RoutersServer';
@@ -30,9 +31,7 @@ export class LocalController {
 	 */
 	@Post('getTestInfo')
 	public detail(@Response() res: any, @Request() req: any): any {
-		// console.log(req);
-
 		// 返回给页面数据内容
-		return this.indexService.getIndexInfo();
+		res.status(HttpStatus.OK).json({'responseData': 'ok'});
 	}
 }

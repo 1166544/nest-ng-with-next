@@ -90,9 +90,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public registerSecurity(req: any, query: any): void {
-		// this.cookies = req && req.cookies ? req.cookies : {};
-		this.cookies = query.token;
-		console.log(this.cookies);
+		this.cookies = req.csrfToken();
 	}
 
 	/**
@@ -118,15 +116,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	private getCsrfToken(): string {
-		return this.cookies;
-		// if (this.cookies && this.cookies._csrf) {
-		// 	// console.log(this.cookies._csrf);
-
-		// 	return this.cookies._csrf;
-		// } else {
-		// 	// TODO: client 端内容
-		// 	return '';
-		// }
+		return this.cookies || '';
 	}
 
 	/**

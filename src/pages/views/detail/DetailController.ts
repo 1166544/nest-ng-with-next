@@ -36,10 +36,8 @@ export class DetailController {
 	@Get('descriptionQuery')
 	@Render('detail/Detail')
 	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any): any {
-		// console.log(req);
-
 		return {
-			token: req.csrfToken(),
+			token: '',
 			id: query.id
 		};
 	}
