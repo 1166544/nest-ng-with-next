@@ -112,10 +112,13 @@ export class BaseService {
 		this.cookiesValue = req && req.headers ? req.headers.cookie : '';
 		this.tokenSource = token;
 
-		// 客户端状态时
+		// 客户端使用时
 		if (!this.tokenSource && query) {
 			this.tokenSource = query.token;
 		}
+
+		// 更新本地通道配置数据,使中转URL转回本地地址调用，到了服务端使用channel配对找到真地址
+		this.options.baseUrl = `http://${query.address}:${query.port}`;
 	}
 
 	/**

@@ -10,7 +10,6 @@ import configService from '@src/core/service/ServiceConfig';
 class LocalService extends BaseService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
-		baseOption.baseUrl = configService.getConfig().localUrl;
 		baseOption.channel = 'local';
 		super(baseOption);
 	}

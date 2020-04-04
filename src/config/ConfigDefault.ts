@@ -43,6 +43,22 @@ export class ConfigDefault {
 	 */
 	private _env: string = ConfigDefault.ENV_PROD;
 
+	/**
+	 * cnnode频道
+	 *
+	 * @type {string}
+	 * @memberof ConfigDefault
+	 */
+	public channelCnNode: string = 'cnnode';
+
+	/**
+	 * 本地频道
+	 *
+	 * @type {string}
+	 * @memberof ConfigDefault
+	 */
+	public channelLocal: string = 'local';
+
 	constructor() {
 		// hole
 	}
@@ -56,11 +72,13 @@ export class ConfigDefault {
 	public channelConfigData: IChannel = {
 		cnnode: {
 			url: 'https://cnodejs.org',
-			type: 'extrenal'
+			type: 'extrenal',
+			channel: this.channelCnNode
 		},
 		local: {
 			url: 'http://127.0.0.1',
-			type: 'internal'
+			type: 'internal',
+			channel: this.channelLocal
 		}
 	};
 
@@ -222,4 +240,12 @@ export interface IChannelData {
 	 * @memberof IChannelData
 	 */
 	type: string
+
+	/**
+	 * 频道名
+	 *
+	 * @type {string}
+	 * @memberof IChannel
+	 */
+	channel: string;
 }

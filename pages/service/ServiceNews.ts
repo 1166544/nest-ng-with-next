@@ -10,7 +10,6 @@ import configService from '@src/core/service/ServiceConfig';
 class NewsService extends BaseService {
 	constructor() {
 		const baseOption: BaseOption = new BaseOption();
-		baseOption.baseUrl = configService.getConfig().cnodeUrl;
 		baseOption.channel = 'news';
 		super(baseOption);
 	}

@@ -22,11 +22,13 @@ export class ConfigDev extends ConfigDefault {
 	public channelConfigData: IChannel = {
 		cnnode: {
 			url: 'https://cnodejs.org',
-			type: 'extrenal'
+			type: 'extrenal',
+			channel: 'cnnode'
 		},
 		local: {
 			url: 'http://127.0.0.1',
-			type: 'internal'
+			type: 'internal',
+			channel: 'local'
 		}
 	};
 }
