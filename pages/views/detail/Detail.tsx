@@ -3,7 +3,7 @@ import { IProps } from './model/ModelProps';
 import { IInitialProps } from './model/ModelInitialProps';
 import cnNodeService from '@src/service/ServiceCNode';
 import localService from '@src/service/ServiceLocal';
-import Header from '@src/components/header/Header';
+import Layout from '@src/components/layout/Layout';
 
 /**
  * 渲染页面
@@ -75,17 +75,14 @@ class Detail extends React.Component<IProps> {
 		// console.log('pageData...', JSON.stringify(this.props));
 
 		return (
-			<div>
-				<Header>
-					<p>header</p>
-				</Header>
+			<Layout>
 				<input type="hidden" name="_csrf" value={this.props.query.token}></input>
 				<div>test</div>
 				<div>{this.props.data}</div>
 				{/* <div>{this.props.query.token}</div> */}
 				{/* <div>{this.props.content}</div> */}
 				{/* <div>Detail Page render content {this.props.title}</div> */}
-			</div>
+			</Layout>
 		);
 	}
 }
