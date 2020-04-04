@@ -91,7 +91,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public registerSecurity(req: any, query: any, res: any): void {
-		const token: string = req.cookies._csrf;
+		const token: string = query.token;
 		this.cookiesValue = req.headers.cookie;
 		this.cookies = token;
 	}

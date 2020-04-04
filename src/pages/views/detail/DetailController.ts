@@ -11,6 +11,8 @@ import {
 } from '@nestjs/common';
 import { DetailService } from './DetailService';
 import { Routers } from '@server/routers/RoutersServer';
+import { SecurityCsrf } from '@server/common/security/SecurityCsrf';
+
 
 /**
  * Detail控制器
@@ -37,7 +39,7 @@ export class DetailController {
 	@Render('detail/Detail')
 	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any): any {
 		return {
-			token: '',
+			token: SecurityCsrf.getInstance().getToken(),
 			id: query.id
 		};
 	}

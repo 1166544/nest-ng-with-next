@@ -8,7 +8,6 @@ import { ConfigDefault } from '@server/config/ConfigDefault';
 import configParser from '@server/common/config/ConfigParser';
 import Consola from 'consola';
 import helmet from 'helmet';
-import csurf from 'csurf';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 
@@ -47,7 +46,6 @@ async function bootstrap(): Promise<any> {
 	server.use(helmet());
 	server.enableCors();
 	server.use(cookieParser());
-	// server.use(csurf({ cookie: true }));
 	server.use(rateLimit(configer.getRateConfig()));
 
 	// port listen
