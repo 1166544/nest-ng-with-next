@@ -86,12 +86,16 @@ export class BaseService {
 	}
 
 	/**
-	 * 注册安全内容
+	 * 注册安全内容(客户端和服务端共同使用)
 	 *
 	 * @param {*} req
 	 * @memberof BaseService
 	 */
-	public registerSecurity(req: any, query: any, res: any): void {
+	public registerSecurity(params: any): void {
+		// 包含 params.req, params.query, params.res
+		const req: any = params.req;
+		const query: any = params.query;
+		const res: any = params.res;
 		let token: string = '';
 		if (req && req.headers) {
 			if (req.headers[this.HEADER_TOKEN_KEY]) {
@@ -104,6 +108,11 @@ export class BaseService {
 		}
 		this.cookiesValue = req && req.headers ? req.headers.cookie : '';
 		this.tokenSource = token;
+
+		// 客户端状态时
+		if (!this.tokenSource && query) {
+			this.tokenSource = query.token;
+		}
 	}
 
 	/**
@@ -171,6 +180,7 @@ export class BaseService {
 			this.apiServiceInstance = configService.getAxios();
 		}
 
+		// 带上COOKIE
 		this.apiServiceInstance.defaults.withCredentials = true;
 
 		// 请求拦截,加上CSRF

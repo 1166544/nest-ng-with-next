@@ -25,7 +25,7 @@ export class ConfigDev extends ConfigDefault {
 			type: 'extrenal'
 		},
 		local: {
-			url: 'http://localhost',
+			url: 'http://127.0.0.1',
 			type: 'internal'
 		}
 	};

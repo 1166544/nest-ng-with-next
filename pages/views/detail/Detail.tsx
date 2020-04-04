@@ -20,9 +20,9 @@ class Index extends React.Component<IProps> {
 	 * @returns
 	 * @memberof Index
 	 */
-	public static async getInitialProps({ query, req, res }: IInitialProps): Promise<any> {
+	public static async getInitialProps(params: IInitialProps): Promise<any> {
 		// 注册安全选项
-		cnNodeService.registerSecurity(req, query, res);
+		cnNodeService.registerSecurity(params);
 
 		// 调用数据
 		const responseData: any = await cnNodeService.getTopics();
@@ -36,7 +36,7 @@ class Index extends React.Component<IProps> {
 		// const responseData: any = {};
 		// console.log(responseData);
 
-		return { data: responseData.data.data[0].title, query };
+		return { data: responseData.data.data[0].title, query: params.query };
 	}
 
 	/**
@@ -45,13 +45,20 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public async componentDidMount(): Promise<any> {
+		// 注册安全选项
 		// 调用外部接口示例
+		// cnNodeService.registerSecurity(this.props || {});
 		// const res: any = await cnNodeService.getTopics();
 
-		// 调用本地接口示例
-		// const res: any = await localService.getCartsListData([]);
+		console.log('start fetch data res.. from client');
 
-		// console.log('fetch data res.. from client', res);
+		// 注册安全选项
+		localService.registerSecurity(this.props || {});
+
+		// 调用本地接口示例
+		const res: any = await localService.getCartsListData([]);
+
+		console.log('fetch data res.. from client', res);
 		// console.log(this.props);
 
 		return { data: {res: 'res.data'} };

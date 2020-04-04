@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { LocalService } from './LocalService';
 import { Routers } from '@server/routers/RoutersServer';
-import { SecurityCsrf } from '@server/common/security/SecurityCsrf';
 
 /**
  * Detail控制器
@@ -34,9 +33,6 @@ export class LocalController {
 	 */
 	@Post('getTestInfo')
 	public detail(@Response() res: any, @Request() request: any): any {
-		const token: string = request.headers['x-xsrf-token'];
-		const vertify: boolean = SecurityCsrf.getInstance().vertify(token);
-
 		// 返回给页面数据内容
 		res.status(HttpStatus.OK).json({'responseData': 'ok'});
 	}
