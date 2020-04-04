@@ -10,4 +10,5 @@ export interface IProps extends IInitialProps {
 	title: string;
 	content: string;
 	id?: string;
+	data?: any
 }

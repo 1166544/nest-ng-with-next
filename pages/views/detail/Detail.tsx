@@ -27,20 +27,16 @@ class Index extends React.Component<IProps> {
 		// 调用数据
 		const responseData: any = await cnNodeService.getTopics();
 
+
 		// 注册安全项
 		// localService.registerSecurity(req, query, res);
 
 		// 调用数据
 		// const responseData: any = await localService.getCartsListData([]);
 		// const responseData: any = {};
-		console.log(responseData);
+		// console.log(responseData);
 
-		// 将token传入页面保存
-		if (query) {
-			query.token = cnNodeService.getToken();
-		}
-
-		return { data: 'res.data', query };
+		return { data: responseData.data.data[0].title, query };
 	}
 
 	/**
@@ -56,6 +52,7 @@ class Index extends React.Component<IProps> {
 		// const res: any = await localService.getCartsListData([]);
 
 		// console.log('fetch data res.. from client', res);
+		// console.log(this.props);
 
 		return { data: {res: 'res.data'} };
 	}
@@ -67,12 +64,13 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public render(): any {
-		console.log('pageData...', JSON.stringify(this.props));
+		// console.log('pageData...', JSON.stringify(this.props));
 
 		return (
 			<div>
 				<input type="hidden" name="_csrf" value={this.props.query.token}></input>
 				<div>test</div>
+				<div>{this.props.data}</div>
 				{/* <div>{this.props.query.token}</div> */}
 				{/* <div>{this.props.content}</div> */}
 				{/* <div>Detail Page render content {this.props.title}</div> */}

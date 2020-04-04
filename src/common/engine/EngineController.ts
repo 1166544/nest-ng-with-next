@@ -1,4 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
+import { SecurityCsrf } from '../security/SecurityCsrf';
 
 /**
  * CONTROLLER基类
@@ -13,7 +14,9 @@ export class EngineController {
 	 * @memberof EngineController
 	 */
 	public getPublicParams(req: any): any {
-		return {};
+		return {
+			token: SecurityCsrf.getInstance().getToken()
+		};
 	}
 
 	/**
