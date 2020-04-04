@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { EngineService } from '@server/common/engine/EngineService';
 
 /**
  * DetailService
@@ -7,7 +8,7 @@ import { Injectable } from '@nestjs/common';
  * @class DetailService
  */
 @Injectable()
-export class DetailService {
+export class DetailService extends EngineService {
 
 	/**
 	 * getDetailInfo

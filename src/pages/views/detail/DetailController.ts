@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { DetailService } from './DetailService';
 import { Routers } from '@server/routers/RoutersServer';
-import { SecurityCsrf } from '@server/common/security/SecurityCsrf';
+import { EngineController } from '@server/common/engine/EngineController';
 
 
 /**
@@ -22,9 +22,9 @@ import { SecurityCsrf } from '@server/common/security/SecurityCsrf';
  */
 @Controller(Routers.DETAIL_MODULE_ROUTER)
 @UseInterceptors(CacheInterceptor)
-export class DetailController {
+export class DetailController extends EngineController{
 	constructor(private readonly detailService: DetailService) {
-		// hole
+		super();
 	}
 
 	/**
@@ -33,14 +33,14 @@ export class DetailController {
 	 * @param {NextResponse} res
 	 * @param {string} id
 	 * @returns
-	 * @memberof DetailController
+	 * @memberof qDetailController
 	 */
-	@Get('descriptionQuery')
+	@Get('description-query')
 	@Render('detail/Detail')
-	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any): any {
+	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any, @Param('id') id: string): any {
 		return {
-			token: SecurityCsrf.getInstance().getToken(),
-			id: query.id
+			...this.getPublicParams(req),	// 公有参数
+			id								// 自定义参数
 		};
 	}
 
@@ -54,9 +54,10 @@ export class DetailController {
 	 */
 	@Get('description/:id')
 	@Render('detail/Detail')
-	public description(@Res() res: any, @Param('id') id: string): any {
+	public description(@Req() req: any, @Res() res: any, @Param('id') id: string): any {
 		return {
-			id
+			...this.getPublicParams(req),	// 公有参数
+			id								// 自定义参数
 		};
 	}
 
@@ -68,8 +69,10 @@ export class DetailController {
 	 */
 	@Get('index')
 	@Render('detail/Detail')
-	public detail(): any {
-		// 返回给页面数据内容
-		return this.detailService.getDetailInfo();
+	public detail(@Req() req: any): any {
+		return {
+			...this.getPublicParams(req),					// 公有参数
+			pageData: this.detailService.getDetailInfo()	// 调用数据返回给页面数据内容								// 自定义参数
+		};
 	}
 }

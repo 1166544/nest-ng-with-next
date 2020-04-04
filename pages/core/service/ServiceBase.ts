@@ -77,8 +77,9 @@ export class BaseService {
 	[x: string]: any;
 	protected apiServiceInstance: any;
 	protected options: IBaseOption;
-	protected cookies: any;
+	protected tokenSource: any;
 	protected cookiesValue: string | undefined;
+	protected HEADER_TOKEN_KEY: string = 'x-xsrf-token';
 
 	constructor(optios: IBaseOption) {
 		this.options = optios;
@@ -91,9 +92,9 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public registerSecurity(req: any, query: any, res: any): void {
-		const token: string = query.token;
+		const token: string = req && req.headers ? req.headers[this.HEADER_TOKEN_KEY] : query.token || '';
 		this.cookiesValue = req.headers.cookie;
-		this.cookies = token;
+		this.tokenSource = token;
 	}
 
 	/**
@@ -105,7 +106,7 @@ export class BaseService {
 	 */
 	private addCsrf(request: AxiosRequestConfig): AxiosRequestConfig {
 		if (request && request.headers) {
-			request.headers['x-xsrf-token'] = this.getCsrfToken();
+			request.headers[this.HEADER_TOKEN_KEY] = this.getCsrfToken();
 			request.headers.cookie = this.cookiesValue;
 		}
 
@@ -120,7 +121,7 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	private getCsrfToken(): string {
-		return this.cookies || '';
+		return this.tokenSource || '';
 	}
 
 	/**

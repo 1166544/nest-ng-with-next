@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { DetailController } from './DetailController';
 import { DetailService } from './DetailService';
 import { CacheModule } from '@server/common/cache/CacheModule';
+import { EngineModule } from '@server/common/engine/EngineModule';
 
 /**
  * detail module
@@ -16,6 +17,6 @@ import { CacheModule } from '@server/common/cache/CacheModule';
 	controllers: [DetailController],
 	providers: [DetailService]
 })
-export class DetailModule {
+export class DetailModule extends EngineModule {
 	// hole
 }

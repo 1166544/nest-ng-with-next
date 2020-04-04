@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
 import { CacheModule } from './common/cache/CacheModule';
@@ -8,6 +8,8 @@ import { TransportModule } from './common/transport/TransportModule';
 import { DetailModule } from './pages/views/detail/DetailModule';
 import { IndexModule } from './pages/views/index/IndexModule';
 import { LocalModule } from './pages/views/local/LocalModule';
+import { MiddlewareCode } from './common/middleware/MiddlewareCode';
+import { MiddlewareSecurity } from './common/middleware/MiddlewareSecurity';
 
 /**
  * app module
@@ -28,6 +30,15 @@ import { LocalModule } from './pages/views/local/LocalModule';
 	controllers: [AppController],
 	providers: [AppService]
 })
-export class AppModule {
-	// hole
+export class AppModule  implements NestModule{
+	/**
+	 * 配置
+	 * @param consumer
+	 */
+	public configure(consumer: MiddlewareConsumer): any {
+		consumer.apply(
+			MiddlewareCode,
+			MiddlewareSecurity
+		).forRoutes({ path: '*', method: RequestMethod.ALL });
+	}
 }
