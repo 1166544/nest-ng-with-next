@@ -1,9 +1,10 @@
 import React from 'react';
-import { IProps } from './model/ModelProps';
-import { IInitialProps } from './model/ModelInitialProps';
+import { IProps } from '../../../model/ModelProps';
+import { IInitialProps } from '../../../model/ModelInitialProps';
 import cnNodeService from '@src/service/ServiceCNode';
 import localService from '@src/service/ServiceLocal';
 import Layout from '@src/components/layout/Layout';
+import PostLink from '../components/post-link/PostLink';
 
 /**
  * 渲染页面
@@ -78,6 +79,11 @@ class Detail extends React.Component<IProps> {
 			<Layout content={this.props.query.token}>
 				<div>test</div>
 				<div>{this.props.data}</div>
+				<ul>
+					<PostLink title="Next.js test"></PostLink>
+					<PostLink title="Next.js awesome"></PostLink>
+					<PostLink title="Next.js cool"></PostLink>
+				</ul>
 				{/* <div>{this.props.query.token}</div> */}
 				{/* <div>{this.props.content}</div> */}
 				{/* <div>Detail Page render content {this.props.title}</div> */}

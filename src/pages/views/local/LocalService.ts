@@ -15,9 +15,9 @@ export class LocalService {
 	 * @returns {*}
 	 * @memberof LocalService
 	 */
-	public getIndexInfo(): any {
+	public getPageInfo(): any {
 		return {
-			title: `Test page detail ${Date.now()}`,
+			title: `Test local page detail ${Date.now()}`,
 			content: 'test content detail'
 		};
 	}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { IProps } from './model/ModelProps';
-import { IInitialProps } from './model/ModelInitialProps';
 import Head from 'next/head';
 import cnNodeService from '@src/service/ServiceCNode';
 
 import './Index.less';
+import { IProps } from '@src/model/ModelProps';
+import { IInitialProps } from '@src/model/ModelInitialProps';
 
 /**
  * 渲染页面

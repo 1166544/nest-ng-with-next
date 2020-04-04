@@ -1,6 +1,6 @@
 import { IView } from '../interfaces/IView';
 import React from 'react';
-import { IProps } from '@src/views/detail/model/ModelProps';
+import { IProps } from '@src/model/ModelProps';
 
 /**
  * 基础视图类
@@ -35,8 +35,4 @@ export class BaseView extends React.Component<IProps> implements IView {
 	 * @memberof BaseView
 	 */
 	public keywords: string = '';
-
-	public constructor() {
-		// hole
-	}
 }

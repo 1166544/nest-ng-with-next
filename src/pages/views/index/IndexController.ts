@@ -27,8 +27,21 @@ export class IndexController {
 	 * @memberof IndexController
 	 */
 	@Get('index')
-	@Render('index/Index')
+	@Render('index/index/Index')
 	public detail(@Request() req: any): any {
+		// 返回给页面数据内容
+		return this.indexService.getIndexInfo();
+	}
+
+	/**
+	 * POST示例页面
+	 *
+	 * @returns {*}
+	 * @memberof IndexController
+	 */
+	@Get('post-detail')
+	@Render('index/post-page/PostPage')
+	public postPage(@Request() req: any): any {
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();
 	}

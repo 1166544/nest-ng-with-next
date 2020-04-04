@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { IProps } from '@src/views/detail/model/ModelProps';
+import { IProps } from '@src/model/ModelProps';
 
 /**
  * 标题组件

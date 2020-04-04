@@ -21,8 +21,20 @@ import { Routers } from '@server/routers/RoutersServer';
 @Controller(Routers.LOCAL_MODULE_ROUTER)
 @UseInterceptors(CacheInterceptor)
 export class LocalController {
-	constructor(private readonly indexService: LocalService) {
+	constructor(private readonly localService: LocalService) {
 		// hole
+	}
+	/**
+	 * 本地首页
+	 *
+	 * @returns {*}
+	 * @memberof IndexController
+	 */
+	@Get('index')
+	@Render('local/index/Index')
+	public index(@Request() req: any): any {
+		// 返回给页面数据内容
+		return this.localService.getPageInfo();
 	}
 
 	/**

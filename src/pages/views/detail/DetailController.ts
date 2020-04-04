@@ -35,8 +35,8 @@ export class DetailController extends EngineController{
 	 * @returns
 	 * @memberof qDetailController
 	 */
-	@Get('description-query')
-	@Render('detail/Detail')
+	@Get('detail-description')
+	@Render('detail/detail/Detail')
 	public descriptionQuery(@Req() req: any, @Res() res: any, @Query() query: any, @Param('id') id: string): any {
 
 		return {
@@ -54,7 +54,7 @@ export class DetailController extends EngineController{
 	 * @memberof DetailController
 	 */
 	@Get('description/:id')
-	@Render('detail/Detail')
+	@Render('detail/detail/Index')
 	public description(@Req() req: any, @Res() res: any, @Param('id') id: string): any {
 
 		return {
@@ -70,7 +70,7 @@ export class DetailController extends EngineController{
 	 * @memberof DetailController
 	 */
 	@Get('index')
-	@Render('detail/Detail')
+	@Render('detail/detail/Index')
 	public detail(@Req() req: any): any {
 		return {
 			...this.getPublicParams(req),					// 公有参数
