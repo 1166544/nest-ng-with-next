@@ -13,7 +13,7 @@ import localService from '@src/service/ServiceLocal';
 class Index extends React.Component<IProps> {
 
 	/**
-	 * 获取渲染页面数据
+	 * 服务端获取渲染页面数据
 	 *
 	 * @static
 	 * @param {IInitialProps} { query }
@@ -22,10 +22,23 @@ class Index extends React.Component<IProps> {
 	 */
 	public static async getInitialProps({ query, req, res }: IInitialProps): Promise<any> {
 		// 注册安全选项
-		localService.registerSecurity(req, query, res);
+		cnNodeService.registerSecurity(req, query, res);
 
-		// const res: any = await cnNodeService.getTopics();
-		const responseData: any = await localService.getCartsListData([]);
+		// 调用数据
+		const responseData: any = await cnNodeService.getTopics();
+
+		// 注册安全项
+		// localService.registerSecurity(req, query, res);
+
+		// 调用数据
+		// const responseData: any = await localService.getCartsListData([]);
+		// const responseData: any = {};
+		console.log(responseData);
+
+		// 将token传入页面保存
+		if (query) {
+			query.token = cnNodeService.getToken();
+		}
 
 		return { data: 'res.data', query };
 	}
@@ -44,7 +57,7 @@ class Index extends React.Component<IProps> {
 
 		// console.log('fetch data res.. from client', res);
 
-		// return { data: res.data };
+		return { data: {res: 'res.data'} };
 	}
 
 	/**
@@ -54,13 +67,15 @@ class Index extends React.Component<IProps> {
 	 * @memberof Index
 	 */
 	public render(): any {
-		// console.log('pageData...', JSON.stringify(this.props));
+		console.log('pageData...', JSON.stringify(this.props));
 
 		return (
 			<div>
-				<div>{this.props.query.id}</div>
-				<div>{this.props.content}</div>
-				<div>Detail Page render content {this.props.title}</div>
+				<input type="hidden" name="_csrf" value={this.props.query.token}></input>
+				<div>test</div>
+				{/* <div>{this.props.query.token}</div> */}
+				{/* <div>{this.props.content}</div> */}
+				{/* <div>Detail Page render content {this.props.title}</div> */}
 			</div>
 		);
 	}

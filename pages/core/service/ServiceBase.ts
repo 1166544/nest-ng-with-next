@@ -92,8 +92,17 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	public registerSecurity(req: any, query: any, res: any): void {
-		const token: string = req && req.headers ? req.headers[this.HEADER_TOKEN_KEY] : query.token || '';
-		this.cookiesValue = req.headers.cookie;
+		let token: string = '';
+		if (req && req.headers) {
+			if (req.headers[this.HEADER_TOKEN_KEY]) {
+				token = req.headers[this.HEADER_TOKEN_KEY];
+			} else {
+				if (query && query.token) {
+					token = query.token;
+				}
+			}
+		}
+		this.cookiesValue = req && req.headers ? req.headers.cookie : '';
 		this.tokenSource = token;
 	}
 
@@ -105,23 +114,27 @@ export class BaseService {
 	 * @memberof BaseService
 	 */
 	private addCsrf(request: AxiosRequestConfig): AxiosRequestConfig {
+		if (!this.tokenSource) {
+			throw new Error('tokenSource is null!');
+		}
 		if (request && request.headers) {
-			request.headers[this.HEADER_TOKEN_KEY] = this.getCsrfToken();
-			request.headers.cookie = this.cookiesValue;
+			request.headers[this.HEADER_TOKEN_KEY] = this.tokenSource;
+			if (this.cookiesValue) {
+				request.headers.cookie = this.cookiesValue;
+			}
 		}
 
 		return request;
 	}
 
 	/**
-	 * 组织加工TOKEN
+	 * 获取服务器传入的TOKEN
 	 *
-	 * @private
 	 * @returns {string}
 	 * @memberof BaseService
 	 */
-	private getCsrfToken(): string {
-		return this.tokenSource || '';
+	public getToken(): string {
+		return this.tokenSource;
 	}
 
 	/**
