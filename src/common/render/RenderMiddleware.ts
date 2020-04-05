@@ -1,5 +1,6 @@
-import { Injectable, MiddlewareFunction, NestMiddleware } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import RenderService from '@server/common/render/RenderService';
+import { Request, Response } from '@server/Types';
 
 /**
  * render middleware
@@ -19,13 +20,11 @@ class RenderMiddleware implements NestMiddleware {
 	 * 在渲染服务中设置当前REQ和RES对象
 	 * @param args
 	 */
-	public resolve(...args: any[]): MiddlewareFunction {
-		return (req: any, res: any, next: any): any => {
-			this.renderService.next(req, res);
-			if (next) {
-				next();
-			}
-		};
+	public use(req: Request, res: Response, next: Function): any {
+		this.renderService.next(req, res);
+		if (next) {
+			next();
+		}
 	}
 }
 

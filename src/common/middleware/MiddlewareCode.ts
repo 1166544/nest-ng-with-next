@@ -1,5 +1,6 @@
 
-import { Injectable, NestMiddleware, MiddlewareFunction } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Request, Response } from '@server/Types';
 
 /**
  * 安全中间件
@@ -17,12 +18,10 @@ class MiddlewareCode implements NestMiddleware {
 	 * @returns {MiddlewareFunction}
 	 * @memberof ShareLoggerMiddleware
 	 */
-	public resolve(...args: any[]): MiddlewareFunction {
-		return (req: any, res: any, next: any): any => {
-			res.setHeader('X-Powered-By', 'ApolloEngine');
+	public use(req: Request, res: Response, next: Function): any {
+		res.setHeader('X-Powered-By', 'ApolloEngine');
 
-			next();
-		};
+		next();
 	}
 }
 

@@ -1,5 +1,6 @@
-import { Injectable, NestMiddleware, MiddlewareFunction } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { filterXSS } from 'xss';
+import { Request, Response } from '@server/Types';
 
 /**
  * 安全中间件XSS
@@ -22,39 +23,37 @@ class MiddlewareXSS implements NestMiddleware {
 	 * @returns {MiddlewareFunction}
 	 * @memberof ShareLoggerMiddleware
 	 */
-	public resolve(...args: any[]): MiddlewareFunction {
-		return (req: any, res: any, next: any): any => {
-			if (req && req.query) {
-				// tslint:disable-next-line:forin
-				for (let key in req.query) {
-					let queryValue: string = req.query[key] || '';
-					if (queryValue && queryValue.indexOf(')') !== -1) {
-						queryValue = queryValue.replace(/\)/gi, '');
-					}
-					queryValue = filterXSS(queryValue);
-					queryValue = this.xssCustomerFilter(queryValue);
-
-					req.query[key] = queryValue;
+	public use(req: any, res: Response, next: Function): any {
+		if (req && req.query) {
+			// tslint:disable-next-line:forin
+			for (let key in req.query) {
+				let queryValue: string = req.query[key] || '';
+				if (queryValue && queryValue.indexOf(')') !== -1) {
+					queryValue = queryValue.replace(/\)/gi, '');
 				}
+				queryValue = filterXSS(queryValue);
+				queryValue = this.xssCustomerFilter(queryValue);
+
+				req.query[key] = queryValue;
 			}
+		}
 
-			if (req && req.body) {
-				// tslint:disable-next-line: forin
-				for (let key in req.body) {
-					let bodyValue: string = req.body[key] || '';
-					// tslint:disable-next-line: triple-equals
-					if (bodyValue && bodyValue.indexOf(')') != -1) {
-						bodyValue = bodyValue.replace(/\)/gi, '');
-					}
-					bodyValue = filterXSS(bodyValue);
-					bodyValue = this.xssCustomerFilter(bodyValue);
-
-					req.body[key] = bodyValue;
+		if (req && req.body) {
+			// tslint:disable-next-line: forin
+			for (let key in req.body) {
+				let bodyValue: string = req.body[key] || '';
+				// tslint:disable-next-line: triple-equals
+				if (bodyValue && bodyValue.indexOf(')') != -1) {
+					bodyValue = bodyValue.replace(/\)/gi, '');
 				}
-			}
+				bodyValue = filterXSS(bodyValue);
+				bodyValue = this.xssCustomerFilter(bodyValue);
 
-			next();
-		};
+				req.body[key] = bodyValue;
+			}
+		}
+
+		next();
 	}
 
 	/**

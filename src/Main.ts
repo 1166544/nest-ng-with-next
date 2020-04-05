@@ -37,10 +37,10 @@ async function bootstrap(): Promise<any> {
 	renderService.setErrorRenderer(app.renderError.bind(app));
 	renderService.bindHttpServer(server.getHttpAdapter());
 
-	server.use(new MiddlewareCode().resolve());
-	server.use(new MiddlewareSecurity().resolve());
-	server.use(new MiddlewareXSS().resolve());
-	server.use(new RenderMiddleware(renderService).resolve());
+	server.use(new MiddlewareCode());
+	server.use(new MiddlewareSecurity());
+	server.use(new MiddlewareXSS());
+	server.use(new RenderMiddleware(renderService));
 	server.useGlobalFilters(
 		new RenderFilter(
 			renderService.getRequestHandler(),

@@ -1,7 +1,8 @@
 
-import { Injectable, NestMiddleware, MiddlewareFunction } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { SecurityCsrf } from '@server/common/security/SecurityCsrf';
 import createError from 'http-errors';
+import { Request, Response } from '@server/Types';
 
 /**
  * 安全中间件
@@ -78,25 +79,24 @@ class MiddlewareSecurity implements NestMiddleware {
 	 * @returns {MiddlewareFunction}
 	 * @memberof ShareLoggerMiddleware
 	 */
-	public resolve(...args: any[]): MiddlewareFunction {
-		return (req: any, res: any, next: any): any => {
-			const ignoreMethod: any = this.getIgnoredMethods(this.ignoreMethods);
-			if (ignoreMethod[req.method]) {
-				// GET请求，放入TOKEN
-				if (req.url.indexOf('_next') === -1) {
-					this.plantToken(req, res);
-				}
-			} else {
-				// 非GET请求校验TOKEN
-				if (!this.tokens.vertify(this.defaultValue(req))) {
-					return next(createError(this.CODE_403, 'invalid csrf token', {
-						code: 'EBADCSRFTOKEN'
-					}));
-				}
+	public use(req: Request, res: Response, next: Function): any {
+		const ignoreMethod: any = this.getIgnoredMethods(this.ignoreMethods);
+		if (ignoreMethod[req.method || 'POST']) {
+			// GET请求，放入TOKEN
+			const reqUrl: string = req && req.url ? req.url : '';
+			if (reqUrl.indexOf('_next') === -1) {
+				this.plantToken(req, res);
 			}
+		} else {
+			// 非GET请求校验TOKEN
+			if (!this.tokens.vertify(this.defaultValue(req))) {
+				return next(createError(this.CODE_403, 'invalid csrf token', {
+					code: 'EBADCSRFTOKEN'
+				}));
+			}
+		}
 
-			next();
-		};
+		next();
 	}
 }
 
