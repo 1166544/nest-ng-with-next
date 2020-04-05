@@ -38,7 +38,7 @@ class Detail extends React.Component<IProps> {
 		// const responseData: any = {};
 		// console.log(responseData);
 
-		return { data: responseData.data.data[0].title, query: params.query };
+		return { data: responseData.data, query: params.query };
 	}
 
 	/**
@@ -78,11 +78,18 @@ class Detail extends React.Component<IProps> {
 		return (
 			<Layout content={this.props.query.token}>
 				<div>test</div>
-				<div>{this.props.data}</div>
+				{/* <div>{this.props.data}</div> */}
 				<ul>
 					<PostLink title="Next.js test"></PostLink>
 					<PostLink title="Next.js awesome"></PostLink>
 					<PostLink title="Next.js cool"></PostLink>
+				</ul>
+				<ul>
+					{
+						this.props.data.data.map((item: any) => {
+							return <li>{item.title}</li>;
+						})
+					}
 				</ul>
 				{/* <div>{this.props.query.token}</div> */}
 				{/* <div>{this.props.content}</div> */}
