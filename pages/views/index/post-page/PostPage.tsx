@@ -24,7 +24,7 @@ const PostPage: any = (): any => {
 			<Clock />
 			<Counter />
 			<nav>
-				<Link href="/index">
+				<Link href="/index/post-count">
 					<a>Navigate</a>
 				</Link>
 			</nav>

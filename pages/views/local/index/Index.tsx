@@ -1,31 +1,46 @@
 import React from 'react';
-import Layout from '@src/components/layout/Layout';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import useInterval from '@src/redux/ReduxUseInterval';
+import Clock from '@src/components/clock/Clock';
+import Counter from '@src/components/counter/Counter';
+import { withRedux } from '@src/redux/Redux';
 
-import './Index.less';
-import { IProps } from '@src/redux/model/ModelProps';
+const IndexPage: any = (): any => {
+	// Tick the time every second
+	const dispatch: any = useDispatch();
+	useInterval(() => {
+		dispatch({
+			type: 'TICK',
+			light: true,
+			lastUpdate: Date.now()
+		});
+	}, 1000);
 
-/**
- * 渲染页面
- *
- * @class Local
- * @extends {React.Component<IProps>}
- */
-class Index extends React.Component<IProps> {
+	return (
+		<div>
+			<Clock />
+			<Counter />
+			<nav>
+				<Link href="/index/post-detail">
+					<a>Navigate</a>
+				</Link>
+			</nav>
+		</div>
+	);
+};
 
-	/**
-	 * 渲染
-	 *
-	 * @returns
-	 * @memberof Index
-	 */
-	public render(): any {
+IndexPage.getInitialProps = ({ reduxStore }: any): any => {
+	// Tick the time once, so we'll have a
+	// valid time before first render
+	const { dispatch } = reduxStore;
+	dispatch({
+		type: 'TICK',
+		light: typeof window === 'object',
+		lastUpdate: Date.now()
+	});
 
-		return (
-			<Layout>
-				<h1>This is the blog post content.</h1>
-			</Layout>
-		);
-	}
-}
+	return {};
+};
 
-export default Index;
+export default withRedux(IndexPage);

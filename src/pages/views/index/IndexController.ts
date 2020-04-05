@@ -34,7 +34,7 @@ export class IndexController {
 	}
 
 	/**
-	 * POST示例页面
+	 * POST REDUX示例页面
 	 *
 	 * @returns {*}
 	 * @memberof IndexController
@@ -42,6 +42,19 @@ export class IndexController {
 	@Get('post-detail')
 	@Render('index/post-page/PostPage')
 	public postPage(@Request() req: any): any {
+		// 返回给页面数据内容
+		return this.indexService.getIndexInfo();
+	}
+
+	/**
+	 * POST REDUX示例页面
+	 *
+	 * @returns {*}
+	 * @memberof IndexController
+	 */
+	@Get('post-count')
+	@Render('local/index/Index')
+	public localPage(@Request() req: any): any {
 		// 返回给页面数据内容
 		return this.indexService.getIndexInfo();
 	}
