@@ -197,24 +197,24 @@ export class BaseService {
 
 		// 请求拦截,加上CSRF
 		this.apiServiceInstance.interceptors.request.use(
-			(request: AxiosRequestConfig) => {
+			(request: AxiosRequestConfig): any => {
 				return this.addCsrf(request);
 			},
-			(error: any) => {
+			(error: any): any => {
 				// hole
 			}
 		);
 
 		// 响应拦截,回上返回时间截
 		this.apiServiceInstance.interceptors.response.use(
-			(response: AxiosResponse) => {
+			(response: AxiosResponse): any => {
 				// 响应日志 response
 				// 客户端收到NODE数据响应时间
 				response.headers[this.HEADER_CLIENT_END_TIME] = Date.now();
 
 				return response;
 			},
-			(error: any) => {
+			(error: any): any => {
 				// hole 采集响应错误日志 console.log('error.......', error);
 				// const copyHeaders: any = { ...(error.config.headers || {}) };
 				// `Error: ${error.syscall} ${error.errno} ${error.hostname} ${error.port}`

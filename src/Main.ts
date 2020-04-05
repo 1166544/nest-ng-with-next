@@ -55,7 +55,7 @@ async function bootstrap(): Promise<any> {
 	server.use(rateLimit(configer.getRateConfig()));
 
 	// port listen
-	await server.listen(serverPort, host, () => {
+	await server.listen(serverPort, host, (): any => {
 		Consola.ready({
 			message: `Server listening on http://${host}:${serverPort}`,
 			badge: true

@@ -31,7 +31,7 @@ export class BaseHttpClient {
 
 		// 请求拦截
 		this.instance.interceptors.request.use(
-			(request: AxiosRequestConfig) => {
+			(request: AxiosRequestConfig): any => {
 				// 服务端收到客户端请求并开始请求外部服务开始时间
 				request.headers[this.HEADER_SERVER_START_TIME] = Date.now();
 
@@ -44,20 +44,20 @@ export class BaseHttpClient {
 
 				return request;
 			},
-			(error: any) => {
+			(error: any): any => {
 				// hole 采集上传错误日志 error.response || {}
 			}
 		);
 
 		// 响应拦截
 		this.instance.interceptors.response.use(
-			(response: AxiosResponse) => {
+			(response: AxiosResponse): any => {
 				// 服务端请求外部服务响应时间
 				response.headers[this.HEADER_SERVER_END_TIME] = Date.now();
 
 				return response;
 			},
-			(error: any) => {
+			(error: any): any => {
 				// hole 采集响应错误日志 console.log('error.......', error);
 				// const copyHeaders: any = { ...(error.config.headers || {}) };
 				// `Error: ${error.syscall} ${error.errno} ${error.hostname} ${error.port}`
@@ -76,7 +76,7 @@ export class BaseHttpClient {
 	public request<T = any>(
 		config: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.request<T>(config));
+		return defer((): Promise<any> => this.instance.request<T>(config));
 	}
 
 	/**
@@ -91,7 +91,7 @@ export class BaseHttpClient {
 		url: string,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.get<T>(url, config));
+		return defer((): Promise<any> => this.instance.get<T>(url, config));
 	}
 
 	/**
@@ -107,7 +107,7 @@ export class BaseHttpClient {
 		url: string,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.delete(url, config));
+		return defer((): Promise<any> => this.instance.delete(url, config));
 	}
 
 	/**
@@ -123,7 +123,7 @@ export class BaseHttpClient {
 		url: string,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.head(url, config));
+		return defer((): Promise<any> => this.instance.head(url, config));
 	}
 
 	/**
@@ -141,7 +141,7 @@ export class BaseHttpClient {
 		data?: any,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.post(url, data, config));
+		return defer((): Promise<any> => this.instance.post(url, data, config));
 	}
 
 	/**
@@ -159,7 +159,7 @@ export class BaseHttpClient {
 		data?: any,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.put(url, data, config));
+		return defer((): Promise<any> => this.instance.put(url, data, config));
 	}
 
 	/**
@@ -177,7 +177,7 @@ export class BaseHttpClient {
 		data?: any,
 		config?: AxiosRequestConfig
 	): Observable<AxiosResponse<T>> {
-		return defer(() => this.instance.patch(url, data, config));
+		return defer((): Promise<any> => this.instance.patch(url, data, config));
 	}
 
 	/**

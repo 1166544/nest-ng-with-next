@@ -20,7 +20,7 @@ export class EngineService {
 	 */
 	public async readFile(filePath: string, fileType: string = 'utf8'): Promise<any> {
 		return new Promise((resolve: any, reject: any): any => {
-			fs.readFile(filePath, fileType, (err, data) => {
+			fs.readFile(filePath, fileType, (err: any, data: any): any => {
 				if (err) {
 					reject(err);
 				}
@@ -38,7 +38,7 @@ export class EngineService {
 	 */
 	public async readFileStat(filePath: string): Promise<any> {
 		return new Promise((resolve: any, reject: any): any => {
-			fs.stat(filePath, (err, stats) => {
+			fs.stat(filePath, (err: any, stats: any): any => {
 				if (err) {
 					reject(err);
 				}
@@ -63,7 +63,7 @@ export class EngineService {
 			let isSavedSuccess: boolean = false;
 			const wstream: any = fs.createWriteStream(path.join(process.cwd(), totalPath, fileName));
 
-			wstream.on('open', () => {
+			wstream.on('open', (): any => {
 				const blockSize: number = 128;
 				const nbBlocks: number = Math.ceil(file.length / (blockSize));
 				for (let i: number = 0; i < nbBlocks; i += 1) {
@@ -79,7 +79,7 @@ export class EngineService {
 			wstream.on('error', (err: any): any => {
 				reject(err);
 			});
-			wstream.on('finish', () => {
+			wstream.on('finish', (): any => {
 				isSavedSuccess = true;
 				uploadUrl = `${uploadUrl}/${fileName}`;
 				resolve({
