@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { IProps } from '@src/model/ModelProps';
+import { IProps } from '@src/redux/model/ModelProps';
 
 /**
  * 标题组件

@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@src/components/layout/Layout';
 
 import './Local.less';
-import { IProps } from '@src/model/ModelProps';
+import { IProps } from '@src/redux/model/ModelProps';
 
 /**
  * 渲染页面

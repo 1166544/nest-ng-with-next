@@ -1,6 +1,6 @@
 import React from 'react';
-import { IProps } from '../../../model/ModelProps';
-import { IInitialProps } from '../../../model/ModelInitialProps';
+import { IProps } from '../../../redux/model/ModelProps';
+import { IInitialProps } from '../../../redux/model/ModelInitialProps';
 import cnNodeService from '@src/service/ServiceCNode';
 import localService from '@src/service/ServiceLocal';
 import Layout from '@src/components/layout/Layout';

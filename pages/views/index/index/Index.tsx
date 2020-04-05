@@ -3,8 +3,8 @@ import Head from 'next/head';
 import cnNodeService from '@src/service/ServiceCNode';
 
 import './Index.less';
-import { IProps } from '@src/model/ModelProps';
-import { IInitialProps } from '@src/model/ModelInitialProps';
+import { IProps } from '@src/redux/model/ModelProps';
+import { IInitialProps } from '@src/redux/model/ModelInitialProps';
 
 /**
  * 渲染页面

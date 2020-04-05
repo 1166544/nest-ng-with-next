@@ -1,6 +1,6 @@
 import { IView } from '../interfaces/IView';
 import React from 'react';
-import { IProps } from '@src/model/ModelProps';
+import { IProps } from '@src/redux/model/ModelProps';
 
 /**
  * 基础视图类
