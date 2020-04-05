@@ -1,31 +1,48 @@
 import React from 'react';
-import Layout from '@src/components/layout/Layout';
+import { useDispatch } from 'react-redux';
+import Link from 'next/link';
+import useInterval from '@src/redux/ReduxUseInterval';
+import Clock from '@src/components/clock/Clock';
+import Counter from '@src/components/counter/Counter';
+import { withRedux } from '@src/redux/Redux';
 
 import './PostPage.less';
 
-/**
- * 渲染页面
- *
- * @class Index
- * @extends {React.Component<IProps>}
- */
-class Index extends React.Component<any> {
+const PostPage: any = (): any => {
+	// Tick the time every second
+	const dispatch: any = useDispatch();
+	useInterval(() => {
+		dispatch({
+			type: 'TICK',
+			light: true,
+			lastUpdate: Date.now()
+		});
+	}, 1000);
 
-	/**
-	 * 渲染
-	 *
-	 * @returns
-	 * @memberof Index
-	 */
-	public render(): any {
-		// console.log('pageData...', this.props);
+	return (
+		<div>
+			<Clock />
+			<Counter />
+			<nav>
+				<Link href="/index">
+					<a>Navigate</a>
+				</Link>
+			</nav>
+		</div>
+	);
+};
 
-		return (
-			<Layout>
-				<p>This is the blog post content.</p>
-			</Layout>
-		);
-	}
-}
+PostPage.getInitialProps = ({ reduxStore }: any): any => {
+	// Tick the time once, so we'll have a
+	// valid time before first render
+	const { dispatch } = reduxStore;
+	dispatch({
+		type: 'TICK',
+		light: typeof window === 'object',
+		lastUpdate: Date.now()
+	});
 
-export default Index;
+	return {};
+};
+
+export default withRedux(PostPage);
