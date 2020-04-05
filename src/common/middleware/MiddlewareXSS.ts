@@ -9,7 +9,7 @@ import { filterXSS } from 'xss';
  * @implements {NestMiddleware}
  */
 @Injectable()
-export class MiddlewareXSS implements NestMiddleware {
+class MiddlewareXSS implements NestMiddleware {
 
 	constructor() {
 		// hole
@@ -83,3 +83,5 @@ export class MiddlewareXSS implements NestMiddleware {
 		return bodyValue;
 	}
 }
+
+export default MiddlewareXSS;

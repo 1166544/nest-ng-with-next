@@ -9,7 +9,7 @@ import { Injectable, NestMiddleware, MiddlewareFunction } from '@nestjs/common';
  * @implements {NestMiddleware}
  */
 @Injectable()
-export class MiddlewareCode implements NestMiddleware {
+class MiddlewareCode implements NestMiddleware {
 	/**
 	 * 头部拦截
 	 *
@@ -25,3 +25,5 @@ export class MiddlewareCode implements NestMiddleware {
 		};
 	}
 }
+
+export default MiddlewareCode;

@@ -11,7 +11,7 @@ import createError from 'http-errors';
  * @implements {NestMiddleware}
  */
 @Injectable()
-export class MiddlewareSecurity implements NestMiddleware {
+class MiddlewareSecurity implements NestMiddleware {
 
 	private ignoreMethods: Array<string> = ['GET', 'HEAD', 'OPTIONS'];
 	private tokens: SecurityCsrf;
@@ -99,3 +99,5 @@ export class MiddlewareSecurity implements NestMiddleware {
 		};
 	}
 }
+
+export default MiddlewareSecurity;

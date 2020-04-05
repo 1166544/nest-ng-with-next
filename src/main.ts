@@ -10,6 +10,9 @@ import Consola from 'consola';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
+import MiddlewareCode from '@server/common/middleware/MiddlewareCode';
+import MiddlewareSecurity from '@server/common/middleware/MiddlewareSecurity';
+import MiddlewareXSS from '@server/common/middleware/MiddlewareXSS';
 
 /**
  * bootstrap
@@ -34,6 +37,9 @@ async function bootstrap(): Promise<any> {
 	renderService.setErrorRenderer(app.renderError.bind(app));
 	renderService.bindHttpServer(server.getHttpAdapter());
 
+	server.use(new MiddlewareCode().resolve());
+	server.use(new MiddlewareSecurity().resolve());
+	server.use(new MiddlewareXSS().resolve());
 	server.use(new RenderMiddleware(renderService).resolve());
 	server.useGlobalFilters(
 		new RenderFilter(
