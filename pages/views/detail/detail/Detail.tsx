@@ -6,6 +6,8 @@ import localService from '@src/service/ServiceLocal';
 import Layout from '@src/components/layout/Layout';
 import PostLink from '../components/post-link/PostLink';
 
+import './Detail.less';
+
 /**
  * 渲染页面
  *
