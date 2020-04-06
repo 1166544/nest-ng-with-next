@@ -37,7 +37,7 @@ const Register: any = (): any => {
 	const onChangeEmail: any = (e: React.ChangeEvent<HTMLInputElement>): any => setEmail(e.target.value);
 	const onChangePassword: any = (e: React.ChangeEvent<HTMLInputElement>): any => setPassword(e.target.value);
 
-	const onSubmit: any = async (e: React.FormEvent<HTMLFormElement>): any => {
+	const onSubmit: any = async (e: React.FormEvent<HTMLFormElement>): Promise<any> => {
 		e.preventDefault();
 
 		const http: Http = new Http();
