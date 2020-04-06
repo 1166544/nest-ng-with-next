@@ -1,22 +1,20 @@
-const withTypescript = require('@zeit/next-typescript');
-const path = require('path');
-const withLess = require('@zeit/next-less');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
-module.exports = withTypescript(withLess({
-	useFileSystemPublicRoutes: false,
-	webpack: function(config, { buildId, dev }) {
-		const originalEntry = config.entry;
+module.exports = {
+  webpack: (config) => {
+    config.module.rules = [
+      ...(config.module.rules || []),
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        use: 'url-loader?limit=100000',
+      },
+    ];
 
-		config.resolve = {
-			...config.resolve,
-			...{
-				alias: {
-					...config.resolve.alias,
-					'@src': path.resolve(__dirname, 'client')
-				}
-			}
-		};
+    config.plugins = [
+      ...(config.plugins || []),
+      new DotenvWebpackPlugin(),
+    ];
 
-		return config;
-	}
-}));
+    return config;
+  },
+};
