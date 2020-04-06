@@ -2,11 +2,12 @@ import React from 'react';
 import { CssBaseline, Toolbar, Container } from '@material-ui/core';
 import { ElevateAppBar } from './ElevateAppBar';
 
-interface LayoutProps {
+/** layout props */
+interface ILayoutProps {
 	children?: React.ReactNode
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout: any = ({ children }: ILayoutProps): any => {
 	return (
 		<React.Fragment>
 			<CssBaseline />

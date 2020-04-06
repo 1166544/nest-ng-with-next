@@ -1,22 +1,24 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, useScrollTrigger } from '@material-ui/core';
 
-interface ElevateAppBarProps {
+/** elevate app bar props */
+interface IElevateAppBarProps {
 	children: React.ReactElement
 }
 
-const ElevationScroll = (props: ElevateAppBarProps) => {
+const ElevationScroll: any = (props: IElevateAppBarProps): any => {
 	const { children } = props;
-	const trigger = useScrollTrigger({
+	const trigger: any = useScrollTrigger({
 		disableHysteresis: true,
 		threshold: 0
 	});
+
 	return React.cloneElement(children, {
 		elevation: trigger ? 4 : 0
 	});
 };
 
-export const ElevateAppBar = () => {
+export const ElevateAppBar: any = (): any => {
 	return (
 		<ElevationScroll>
 			<AppBar>
