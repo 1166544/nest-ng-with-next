@@ -1,21 +1,27 @@
-import {
-  IncomingMessage,
-  ServerResponse,
-} from 'http';
-import {
-  Injectable,
-  NestMiddleware,
-} from '@nestjs/common';
+import { IncomingMessage, ServerResponse } from 'http';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextService } from './next.service';
 
+/**
+ * next middleware
+ *
+ * @export
+ * @class NextMiddleware
+ * @implements {NestMiddleware}
+ */
 @Injectable()
 export class NextMiddleware implements NestMiddleware {
-  constructor(
-    private readonly next: NextService,
-  ) {}
+	constructor(private readonly next: NextService) {}
 
-  public use(req: IncomingMessage, res: ServerResponse) {
-    const handle = this.next.getApp().getRequestHandler();
-    handle(req, res);
-  }
+	/**
+	 * use
+	 *
+	 * @param {IncomingMessage} req
+	 * @param {ServerResponse} res
+	 * @memberof NextMiddleware
+	 */
+	public use(req: IncomingMessage, res: ServerResponse): void {
+		const handle: any = this.next.getApp().getRequestHandler();
+		handle(req, res);
+	}
 }

@@ -1,16 +1,22 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
+/**
+ * session实体
+ *
+ * @export
+ * @class Session
+ */
 @Entity()
 export class Session {
 	@PrimaryColumn({
 		type: 'varchar',
 		collation: 'default',
 	})
-	sid!: string;
+	public sid!: string;
 
 	@Column('json')
-	sess!: string;
+	public sess!: string;
 
 	@Column('timestamp')
-	expire!: number;
+	public expire!: number;
 }

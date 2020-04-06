@@ -1,22 +1,49 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+/**
+ * 用户表实体
+ *
+ * @export
+ * @class User
+ */
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
 
-  @Column('varchar')
-  name: string;
+	/**
+	 * id primary generated column
+	 *
+	 * @type {number}
+	 * @memberof User
+	 */
+	@PrimaryGeneratedColumn()
+	public id: number;
 
-  @Column('varchar', {
-    unique: true,
-  })
-  email: string;
+	/**
+	 * name
+	 *
+	 * @type {string}
+	 * @memberof User
+	 */
+	@Column('varchar')
+	public name: string;
 
-  @Column('varchar')
-  password: string;
+	/**
+	 * account
+	 *
+	 * @type {string}
+	 * @memberof User
+	 */
+	@Column('varchar', {
+		unique: true,
+	})
+	public email: string;
+
+	/**
+	 * password
+	 *
+	 * @type {string}
+	 * @memberof User
+	 */
+	@Column('varchar')
+	public password: string;
 }

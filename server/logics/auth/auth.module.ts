@@ -1,41 +1,41 @@
 import passport from 'passport';
-import {
-  Module,
-  INestApplication,
-} from '@nestjs/common';
+import { Module, INestApplication } from '@nestjs/common';
 import { UserModule } from '../user/user.module';
 import { AuthService } from './auth.service';
-import {
-  LocalRegisterStrategy,
-  LocalLoginStrategy,
-} from './strategies';
+import { LocalRegisterStrategy, LocalLoginStrategy } from './strategies';
 
+/**
+ * auth module
+ *
+ * @export
+ * @class AuthModule
+ */
 @Module({
-  imports: [
-    UserModule,
-  ],
-  providers: [
-    AuthService,
-    LocalRegisterStrategy,
-    LocalLoginStrategy,
-  ],
-  exports: [
-    AuthService,
-  ],
+	imports: [UserModule],
+	providers: [AuthService, LocalRegisterStrategy, LocalLoginStrategy],
+	exports: [AuthService],
 })
 export class AuthModule {
-  constructor(
-    private readonly authService: AuthService,
-  ) {}
+	constructor(private readonly authService: AuthService) {}
 
-  public initialize(app: INestApplication) {
-    app.use(passport.initialize());
-    app.use(passport.session());
+	/**
+	 * 初始化
+	 *
+	 * @param {INestApplication} app
+	 * @memberof AuthModule
+	 */
+	public initialize(app: INestApplication): void {
+		app.use(passport.initialize());
+		app.use(passport.session());
 
-    passport.serializeUser((user: any, done: (err: any, id?: any) => void) => done(null, user));
-    passport.deserializeUser((id: any, done: (err: any, user?: any) => void) => done(null, id));
+		passport.serializeUser(
+			(user: any, done: (err: any, id?: any) => void): any => done(null, user)
+		);
+		passport.deserializeUser(
+			(id: any, done: (err: any, user?: any) => void): any => done(null, id)
+		);
 
-    passport.use(new LocalRegisterStrategy(this.authService));
-    passport.use(new LocalLoginStrategy(this.authService));
-  }
+		passport.use(new LocalRegisterStrategy(this.authService));
+		passport.use(new LocalLoginStrategy(this.authService));
+	}
 }

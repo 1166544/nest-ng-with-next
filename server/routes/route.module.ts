@@ -5,15 +5,14 @@ import { ApiAuthController } from './api/auth.controller';
 import { AuthController } from './auth.controller';
 import { HomeController } from './home.controller';
 
+/**
+ * 路由处理模块
+ *
+ * @export
+ * @class RouteModule
+ */
 @Module({
-  imports: [
-    NextModule,
-    AuthModule,
-  ],
-  controllers: [
-    ApiAuthController,
-    AuthController,
-    HomeController,
-  ],
+	imports: [NextModule, AuthModule],
+	controllers: [ApiAuthController, AuthController, HomeController]
 })
 export class RouteModule {}
