@@ -7,7 +7,7 @@
     "build": "rimraf .next && run-p build:server build:client",
     "build:server": "tsc --project tsconfig.server.json",
     "build:client": "next build",
-	"lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
     "start": "cross-env NODE_ENV=production node .next/production-server/main.js"
   },
   "dependencies": {
@@ -30,6 +30,8 @@
     "react-dom": "^16.13.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
+    "tslint": "^6.1.1",
+    "tslint-config-alloy": "^0.2.1",
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
