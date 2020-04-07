@@ -130,7 +130,7 @@ class Index extends React.Component<any> {
 					<div className={this.classes.container}>
 						<Card className={this.classes.card}>
 							<CardContent>
-								<Typography variant="body1">Detail page You are now logged in as {this.props.user.name} :)</Typography>
+								{/* <Typography variant="body1">Detail page You are now logged in as {this.props.user.name} :)</Typography> */}
 								<br />
 								<Button type="submit" variant="outlined" color="primary" size="large" onClick={this.onClick.bind(this)}>
 									LOGOUT
