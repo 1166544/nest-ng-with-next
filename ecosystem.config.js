@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'Apollo',
-    script: '.next/production-server/main.js',
+    script: '.next/production-server/Main.js',
     instances: 1,
     autorestart: true,
     watch: false,
