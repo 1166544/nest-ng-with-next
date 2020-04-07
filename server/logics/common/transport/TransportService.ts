@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { stringify } from 'querystring';
-import { BaseHttpClient } from '../engine/MiddlewareHttp';
+import { BaseHttpClient } from '../engine/EngineHttp';
 import { ConfigDefault } from '../../../config/ConfigDefault';
 import configParser from '../config/ConfigParser';
 
