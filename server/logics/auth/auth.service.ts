@@ -33,6 +33,8 @@ export class AuthService {
 			email
 		);
 
+		// console.log('registerUserIfNotExist..', user);
+
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const { password, ...result } = user;
 
@@ -68,6 +70,14 @@ export class AuthService {
 		const user: User | undefined = await this.userService.findOneByEmail(
 			email
 		);
+
+		console.log('validateUser..', user);
+		// validateUser.. User {
+		// 	id: 1,
+		// 	name: 'james',
+		// 	email: 'james@james.com',
+		// 	password: '$2b$08$BIojpTWP9YD9wwwMOD5koOBUxG4dP.dIzNoPxxOFCx3w9GAJg0Suq'
+		//   }
 
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const { password, ...result } = user;
