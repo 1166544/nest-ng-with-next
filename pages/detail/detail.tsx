@@ -138,6 +138,15 @@ class Index extends React.Component<any> {
 							</CardContent>
 						</Card>
 					</div>
+					{
+						this.props.data.data.map((item: any): any => {
+							return <Card className={this.classes.card}>
+								<CardContent>
+									{item.title}
+								</CardContent>
+							</Card>;
+						})
+					}
 				</div>
 			</Layout>
 		);
