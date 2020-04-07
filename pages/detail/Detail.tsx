@@ -9,10 +9,10 @@ import localService from '../../lib/service/ServiceLocal';
 /**
  * index page
  *
- * @class Index
+ * @class Detail
  * @extends {React.Component<any>}
  */
-class Index extends React.Component<any> {
+class Detail extends React.Component<any> {
 	public classes: any;
 
 	constructor(props: any, context?: any) {
@@ -26,7 +26,7 @@ class Index extends React.Component<any> {
 	 * @static
 	 * @param {*} { req }
 	 * @returns {Promise<any>}
-	 * @memberof Index
+	 * @memberof Detail
 	 */
 	public static async getInitialProps(params: any): Promise<any> {
 		const { user } = params.req;
@@ -52,7 +52,7 @@ class Index extends React.Component<any> {
 	/**
 	 * 客户端调用获取数据
 	 *
-	 * @memberof Index
+	 * @memberof Detail
 	 */
 	public async componentDidMount(): Promise<any> {
 		// 注册安全选项
@@ -80,7 +80,7 @@ class Index extends React.Component<any> {
 	 * @private
 	 * @param {*} themeData
 	 * @returns {*}
-	 * @memberof Index
+	 * @memberof Detail
 	 */
 	private useStyles(themeData: any): any {
 		return makeStyles((theme: Theme): any =>
@@ -106,7 +106,7 @@ class Index extends React.Component<any> {
 	 * @private
 	 * @param {React.MouseEvent} e
 	 * @returns {Promise<any>}
-	 * @memberof Index
+	 * @memberof Detail
 	 */
 	private async onClick(e: React.MouseEvent): Promise<any> {
 		e.preventDefault();
@@ -121,7 +121,7 @@ class Index extends React.Component<any> {
 	 * render
 	 *
 	 * @returns {*}
-	 * @memberof Index
+	 * @memberof Detail
 	 */
 	public render(): any {
 		return (
@@ -154,4 +154,4 @@ class Index extends React.Component<any> {
 
 }
 
-export default Index;
+export default Detail;
