@@ -61,7 +61,7 @@ class LocalService extends BaseService {
 	 * @memberof LocalService
 	 */
 	public async getCartsListData(params: Array<any>): Promise<any> {
-		return await this.post('/api/local/getTestInfo', { list: params });
+		return await this.post('/api/auth/getTestInfo', { list: params });
 	}
 
 	/**

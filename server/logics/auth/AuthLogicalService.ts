@@ -10,7 +10,7 @@ import { User } from '../entities/EntityUser';
  * @class AuthService
  */
 @Injectable()
-export class AuthService {
+export class AuthLogicalService {
 	constructor(private readonly userService: UserService) {
 		// hole
 	}

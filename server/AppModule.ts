@@ -14,7 +14,7 @@ import {
 } from './logics/auth/middlewares';
 import { TransportModule } from './logics/common/transport/TransportModule';
 import { DetailModule } from './pages/detail/DetailModule';
-import { AuthModule } from './logics/auth/AuthModule';
+import { AuthLogicalModule } from './logics/auth/AuthLogicalModule';
 
 /**
  * App Module
@@ -30,7 +30,7 @@ import { AuthModule } from './logics/auth/AuthModule';
 		// 添加业务模块
 		HomeModule,
 		DetailModule,
-		AuthModule,
+		AuthLogicalModule,
 		TransportModule
 	],
 })

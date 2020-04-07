@@ -63,12 +63,12 @@ class Index extends React.Component<any> {
 		// console.log('start fetch data res.. from client');
 
 		// 注册安全选项
-		// localService.registerSecurity(this.props || {});
+		localService.registerSecurity(this.props || {});
 
 		// 调用本地接口示例
-		// const res: any = await localService.getCartsListData([]);
+		const resLocal: any = await localService.getCartsListData([]);
 
-		// console.log('fetch data res.. from client', res);
+		console.log('fetch data res.. from client', resLocal);
 		// console.log(this.props);
 
 		return { data: {res: 'res.data'} };

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { NextModule } from '../../logics/next/NextModule';
-import { AuthModule } from '../../logics/auth/AuthModule';
+import { AuthLogicalModule } from '../../logics/auth/AuthLogicalModule';
 import { AuthController } from './AuthController';
 import { ApiAuthController } from './api/ApiAuthController';
 
@@ -11,7 +11,7 @@ import { ApiAuthController } from './api/ApiAuthController';
  * @class AuthModule
  */
 @Module({
-	imports: [NextModule, AuthModule],
+	imports: [NextModule, AuthLogicalModule],
 	controllers: [AuthController, ApiAuthController]
 })
 export class AuthlModule {}

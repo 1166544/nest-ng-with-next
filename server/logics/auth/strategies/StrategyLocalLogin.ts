@@ -1,6 +1,6 @@
 import { Strategy } from 'passport-local';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from '../AuthService';
+import { AuthLogicalService } from '../AuthLogicalService';
 
 /**
  * 本地登录策略
@@ -13,7 +13,7 @@ import { AuthService } from '../AuthService';
 export class LocalLoginStrategy extends Strategy {
 	public name: string = 'local-login';
 
-	constructor(private readonly authService: AuthService) {
+	constructor(private readonly authService: AuthLogicalService) {
 		super(
 			{
 				usernameField: 'email',

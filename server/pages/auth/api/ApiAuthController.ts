@@ -1,4 +1,13 @@
-import { Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import {
+	Controller,
+	Post,
+	Req,
+	Res,
+	UseGuards,
+	HttpStatus,
+	Request,
+	Response
+} from '@nestjs/common';
 import { RegisterGuard, LoginGuard } from '../../../logics/auth/guards';
 
 /**
@@ -48,5 +57,17 @@ export class ApiAuthController {
 		req.session.destroy((): any => {
 			res.json(true);
 		});
+	}
+
+	/**
+	 * 其它页入口
+	 *
+	 * @returns {*}
+	 * @memberof DetailController
+	 */
+	@Post('getTestInfo')
+	public detail(@Response() res: any, @Request() request: any): any {
+		// 返回给页面数据内容
+		res.status(HttpStatus.OK).json({'responseData': 'ok'});
 	}
 }

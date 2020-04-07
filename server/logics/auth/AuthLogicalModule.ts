@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Module, INestApplication } from '@nestjs/common';
 import { UserModule } from '../user/UserModule';
-import { AuthService } from './AuthService';
+import { AuthLogicalService } from './AuthLogicalService';
 import { LocalRegisterStrategy, LocalLoginStrategy } from './strategies';
 
 /**
@@ -12,11 +12,11 @@ import { LocalRegisterStrategy, LocalLoginStrategy } from './strategies';
  */
 @Module({
 	imports: [UserModule],
-	providers: [AuthService, LocalRegisterStrategy, LocalLoginStrategy],
-	exports: [AuthService],
+	providers: [AuthLogicalService, LocalRegisterStrategy, LocalLoginStrategy],
+	exports: [AuthLogicalService],
 })
-export class AuthModule {
-	constructor(private readonly authService: AuthService) {}
+export class AuthLogicalModule {
+	constructor(private readonly authService: AuthLogicalService) {}
 
 	/**
 	 * 初始化

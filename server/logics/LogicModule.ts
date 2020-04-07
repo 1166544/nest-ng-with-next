@@ -2,7 +2,7 @@ import { Module, INestApplication } from '@nestjs/common';
 import { EnvModule } from './env/EnvModule';
 import { SessionModule } from './session/SessionModule';
 import { NextModule } from './next/NextModule';
-import { AuthModule } from './auth/AuthModule';
+import { AuthLogicalModule } from './auth/AuthLogicalModule';
 import { UserModule } from './user/UserModule';
 
 /**
@@ -12,7 +12,7 @@ import { UserModule } from './user/UserModule';
  * @class LogicModule
  */
 @Module({
-	imports: [EnvModule, SessionModule, NextModule, AuthModule, UserModule],
+	imports: [EnvModule, SessionModule, NextModule, AuthLogicalModule, UserModule],
 })
 export class LogicModule {
 
@@ -28,6 +28,6 @@ export class LogicModule {
 
 		// enable passport session
 		// NOTE: we must use this at the end of `app.use()` list
-		app.get(AuthModule).initialize(app);
+		app.get(AuthLogicalModule).initialize(app);
 	}
 }
