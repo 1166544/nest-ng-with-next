@@ -6,12 +6,13 @@
 		"lint"
 	],
 	"scripts": {
-		"dev": "npm run lint && tsnd --project tsconfig.server.json --ignore-watch .next server/Main.ts",
-		"build": "npm run lint && rimraf .next && run-p build:server build:client",
+		"dev": "npm run lint && cross-env NODE_ENV=development npm run cover && tsnd --project tsconfig.server.json --ignore-watch .next server/Main.ts",
+		"build": "npm run lint && cross-env NODE_ENV=development npm run cover && rimraf .next && run-p build:server build:client",
 		"build:server": "tsc --project tsconfig.server.json",
 		"build:client": "next build",
 		"lint": "tslint -p tsconfig.json -c tslint.json",
-		"start": "cross-env NODE_ENV=production node .next/production-server/Main.js"
+		"cover": "node build/BuildCover.js",
+		"start": "cross-env NODE_ENV=production npm run cover && node .next/production-server/Main.js"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.9.8",

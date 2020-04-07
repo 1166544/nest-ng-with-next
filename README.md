@@ -99,7 +99,7 @@ Because Apollo uses [node.bcrypt.js](https://github.com/kelektiv/node.bcrypt.js)
 
 ```bash
 # prepare `.env` and edit it for your own environments
-$ cp build/.env.example .env
+$ cp build/BuildEnv .env
 
 # install dependencies
 $ yarn

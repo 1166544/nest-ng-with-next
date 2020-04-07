@@ -36,11 +36,11 @@ export class BaseHttpClient {
 				request.headers[this.HEADER_SERVER_START_TIME] = Date.now();
 
 				// 开发模式则添加代理-charles
-				// if (configParser.getConfig().getEnv() === ConfigDefault.ENV_DEV) {
-				process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-				request.httpAgent = new ProxyAgent(this.proxyUri);
-				request.httpsAgent = new ProxyAgent(this.proxyUri);
-				// }
+				if (process.env.ENV === ConfigDefault.ENV_DEV) {
+					process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+					request.httpAgent = new ProxyAgent(this.proxyUri);
+					request.httpsAgent = new ProxyAgent(this.proxyUri);
+				}
 
 				return request;
 			},
