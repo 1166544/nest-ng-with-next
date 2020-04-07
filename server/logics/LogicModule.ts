@@ -1,9 +1,9 @@
 import { Module, INestApplication } from '@nestjs/common';
-import { EnvModule } from './env/env.module';
-import { SessionModule } from './session/session.module';
-import { NextModule } from './next/next.module';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+import { EnvModule } from './env/EnvModule';
+import { SessionModule } from './session/SessionModule';
+import { NextModule } from './next/NextModule';
+import { AuthModule } from './auth/AuthModule';
+import { UserModule } from './user/UserModule';
 
 /**
  * Logic module

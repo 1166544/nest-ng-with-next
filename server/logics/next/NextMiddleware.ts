@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { NextService } from './next.service';
+import { NextService } from './NextService';
 
 /**
  * next middleware

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import next from 'next';
 import { ServerConstructor } from 'next/dist/next-server/server/next-server';
-import { NextService } from './next.service';
+import { NextService } from './NextService';
 
 /** next server contrustor */
 type NextServerConstructor = Omit<ServerConstructor, 'staticMarkup'> & {

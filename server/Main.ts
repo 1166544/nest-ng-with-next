@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
-import { LogicModule } from './logics/logic.module';
-import { NextModule } from './logics/next/next.module';
+import { AppModule } from './AppModule';
+import { LogicModule } from './logics/LogicModule';
+import { NextModule } from './logics/next/NextModule';
 
 dotenv.config();
 

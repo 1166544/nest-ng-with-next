@@ -1,7 +1,7 @@
 import { Module, INestApplication } from '@nestjs/common';
 import session from 'express-session';
-import { EnvModule } from '../env/env.module';
-import { EnvService } from '../env/env.service';
+import { EnvModule } from '../env/EnvModule';
+import { EnvService } from '../env/EnvService';
 
 /**
  * session module

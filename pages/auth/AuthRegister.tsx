@@ -1,7 +1,7 @@
 import React from 'react';
 import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography, Button, Card, CardContent, FormControl, TextField } from '@material-ui/core';
-import Link from '../../components/Link';
+import Link from '../../components/link';
 import { Http } from '../../lib/http';
 
 /** use style */

@@ -1,6 +1,6 @@
 import { Connection } from 'typeorm';
-import { User } from '../../entities/user.entity';
-import { DATABASE_CONNECTION, USER_REPOSITORY } from '../database/constants';
+import { User } from '../entities/EntityUser';
+import { DATABASE_CONNECTION, USER_REPOSITORY } from '../database/DatabaseConstants';
 
 /** user provider */
 export const userProviders: Array<any> = [

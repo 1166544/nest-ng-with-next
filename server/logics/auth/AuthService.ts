@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
-import { UserService } from '../user/user.service';
-import { User } from '../../entities/user.entity';
+import { UserService } from '../user/UserService';
+import { User } from '../entities/EntityUser';
 
 /**
  * Auth service

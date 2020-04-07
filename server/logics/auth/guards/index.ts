@@ -1,2 +1,2 @@
-export * from './register.guard';
-export * from './login.guard';
+export * from './GuardRegister';
+export * from './GuardLogin';

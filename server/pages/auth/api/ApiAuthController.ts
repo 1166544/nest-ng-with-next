@@ -1,5 +1,5 @@
 import { Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { RegisterGuard, LoginGuard } from '../../logics/auth/guards';
+import { RegisterGuard, LoginGuard } from '../../../logics/auth/guards';
 
 /**
  * api auth controller

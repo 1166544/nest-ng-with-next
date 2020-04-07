@@ -1,5 +1,6 @@
 import { Controller, Get, Req, Res } from '@nestjs/common';
-import { NextService } from '../logics/next/next.service';
+import { Request, Response } from 'express';
+import { NextService } from '../../logics/next/NextService';
 
 /**
  * auth controller
@@ -20,8 +21,8 @@ export class AuthController {
 	 * @memberof AuthController
 	 */
 	@Get('register')
-	public showRegister(@Req() req: any, @Res() res: any): Promise<any> {
-		return this.next.render('/auth/register', req, res);
+	public showRegister(@Req() req: Request, @Res() res: Response): Promise<any> {
+		return this.next.render('/auth/AuthRegister', req, res);
 	}
 
 	/**
@@ -34,6 +35,6 @@ export class AuthController {
 	 */
 	@Get('login')
 	public showLogin(@Req() req: any, @Res() res: any): Promise<any> {
-		return this.next.render('/auth/login', req, res);
+		return this.next.render('/auth/AuthLogin', req, res);
 	}
 }

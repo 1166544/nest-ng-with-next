@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Module, INestApplication } from '@nestjs/common';
-import { UserModule } from '../user/user.module';
-import { AuthService } from './auth.service';
+import { UserModule } from '../user/UserModule';
+import { AuthService } from './AuthService';
 import { LocalRegisterStrategy, LocalLoginStrategy } from './strategies';
 
 /**

@@ -1,7 +1,7 @@
 import { Strategy } from 'passport-local';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../AuthService';
 
 /**
  * 本地注册策略

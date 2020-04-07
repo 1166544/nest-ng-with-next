@@ -4,15 +4,17 @@ import {
 	MiddlewareConsumer,
 	RequestMethod
 } from '@nestjs/common';
-import { NextModule } from './logics/next/next.module';
-import { NextMiddleware } from './logics/next/next.middleware';
-import { LogicModule } from './logics/logic.module';
-import { RouteModule } from './routes/route.module';
+import { NextModule } from './logics/next/NextModule';
+import { NextMiddleware } from './logics/next/NextMiddleware';
+import { LogicModule } from './logics/LogicModule';
+import { HomeModule } from './pages/home/HomeModule';
 import {
 	RedirectIfAuthenticatedMiddleware,
 	RedirectIfNotAuthenticatedMiddleware
 } from './logics/auth/middlewares';
 import { TransportModule } from './logics/common/transport/TransportModule';
+import { DetailModule } from './pages/detail/DetailModule';
+import { AuthModule } from './logics/auth/AuthModule';
 
 /**
  * App Module
@@ -25,7 +27,10 @@ import { TransportModule } from './logics/common/transport/TransportModule';
 	imports: [
 		NextModule,
 		LogicModule,
-		RouteModule,
+		// 添加业务模块
+		HomeModule,
+		DetailModule,
+		AuthModule,
 		TransportModule
 	],
 })

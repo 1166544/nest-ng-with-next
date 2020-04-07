@@ -1,6 +1,6 @@
 import { Controller, Get, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { NextService } from '../logics/next/next.service';
+import { NextService } from '../../logics/next/NextService';
 
 /**
  * home controller
@@ -24,19 +24,5 @@ export class HomeController {
 	public showHome(@Req() req: Request, @Res() res: Response): Promise<any> {
 		// 指定渲染路径
 		return this.next.render('/index', req, res);
-	}
-
-	/**
-	 * show detail
-	 *
-	 * @param {Request} req
-	 * @param {Response} res
-	 * @returns
-	 * @memberof HomeController
-	 */
-	@Get('detail')
-	public showDetail(@Req() req: Request, @Res() res: Response): Promise<any> {
-		// 指定渲染路径
-		return this.next.render('/detail/detail', req, res);
 	}
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography, Button, Card, CardContent } from '@material-ui/core';
 import { Http } from '../../lib/http';
-import { Layout } from '../../components/Layout';
+import { Layout } from '../../components/layout';
 import cnNodeService from '../../lib/service/ServiceCNode';
 import localService from '../../lib/service/ServiceLocal';
 

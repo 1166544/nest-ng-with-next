@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssBaseline, Toolbar, Container } from '@material-ui/core';
-import { ElevateAppBar } from './ElevateAppBar';
+import { ElevateAppBar } from './elevate-app-bar';
 
 /** layout props */
 interface ILayoutProps {
