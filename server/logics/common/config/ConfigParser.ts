@@ -2,6 +2,7 @@ import { parse } from 'dotenv';
 import * as fs from 'fs';
 import { ConfigDev } from '../../../config/ConfigDev';
 import { ConfigDefault } from '../../../config/ConfigDefault';
+import { ConfigProd } from '../../../config/ConfigProd';
 
 /**
  * 配置服务
@@ -47,26 +48,23 @@ class ConfigParser {
 
 	constructor() {
 
-		// test
-		this.config = new ConfigDev();
+		this.envConfig = parse(fs.readFileSync('.env'));
+		// console.log('envConfig...', this.envConfig.ENV);
 
-		// this.envConfig = parse(fs.readFileSync('.env'));
-		// // console.log('envConfig...', this.envConfig.ENV);
-
-		// switch (this.envConfig.ENV) {
-		// 	case ConfigDefault.ENV_DEV:
-		// 		this.config = new ConfigDev();
-		// 		break;
-		// 	case ConfigDefault.ENV_PROD:
-		// 		this.config = new ConfigProd();
-		// 		break;
-		// 	default:
-		// 		this.config = new ConfigProd();
-		// 		break;
-		// }
+		switch (this.envConfig.ENV) {
+			case ConfigDefault.ENV_DEV:
+				this.config = new ConfigDev();
+				break;
+			case ConfigDefault.ENV_PROD:
+				this.config = new ConfigProd();
+				break;
+			default:
+				this.config = new ConfigProd();
+				break;
+		}
 
 		// 将环境标识写入配置中
-		// this.config.updateEnv(this.envConfig.ENV);
+		this.config.updateEnv(this.envConfig.ENV);
 	}
 
 	/**
