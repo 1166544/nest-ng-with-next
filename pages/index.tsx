@@ -3,6 +3,8 @@ import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography, Button, Card, CardContent } from '@material-ui/core';
 import { Http } from '../lib/http';
 import { Layout } from '../components/Layout';
+import cnNodeService from '../lib/service/ServiceCNode';
+import localService from '../lib/service/ServiceLocal';
 
 /**
  * index page
@@ -16,6 +18,60 @@ class Index extends React.Component<any> {
 	constructor(props: any, context?: any) {
 		super(props, context);
 		this.classes = this.useStyles({});
+	}
+
+	/**
+	 * 获取渲染页面数据
+	 *
+	 * @static
+	 * @param {*} { req }
+	 * @returns {Promise<any>}
+	 * @memberof Index
+	 */
+	public static async getInitialProps(params: any): Promise<any> {
+		const { user } = params.req;
+
+		// 注册安全选项
+		cnNodeService.registerSecurity(params);
+
+		// 调用数据
+		const responseData: any = await cnNodeService.getTopics();
+
+
+		// 注册安全项
+		// localService.registerSecurity(req, query, res);
+
+		// 调用数据
+		// const responseData: any = await localService.getCartsListData([]);
+		// const responseData: any = {};
+		// console.log(responseData);
+
+		return { data: responseData.data, query: params.query, user };
+	}
+
+	/**
+	 * 客户端调用获取数据
+	 *
+	 * @memberof Index
+	 */
+	public async componentDidMount(): Promise<any> {
+		// 注册安全选项
+		// 调用外部接口示例
+		// cnNodeService.registerSecurity(this.props || {});
+		// const res: any = await cnNodeService.getTopics();
+
+		// console.log('start fetch data res.. from client');
+
+		// 注册安全选项
+		// localService.registerSecurity(this.props || {});
+
+		// 调用本地接口示例
+		// const res: any = await localService.getCartsListData([]);
+
+		// console.log('fetch data res.. from client', res);
+		// console.log(this.props);
+
+		return { data: {res: 'res.data'} };
 	}
 
 	/**
@@ -42,22 +98,6 @@ class Index extends React.Component<any> {
 				}
 			})
 		);
-	}
-
-	/**
-	 * 获取渲染页面数据
-	 *
-	 * @static
-	 * @param {*} { req }
-	 * @returns {Promise<any>}
-	 * @memberof Index
-	 */
-	public static async getInitialProps({ req }: any): Promise<any> {
-		const { user } = req;
-
-		return {
-			user
-		};
 	}
 
 	/**

@@ -12,6 +12,7 @@ import {
 	RedirectIfAuthenticatedMiddleware,
 	RedirectIfNotAuthenticatedMiddleware
 } from './logics/auth/middlewares';
+import { TransportModule } from './logics/common/transport/TransportModule';
 
 /**
  * App Module
@@ -21,7 +22,12 @@ import {
  * @implements {NestModule}
  */
 @Module({
-	imports: [NextModule, LogicModule, RouteModule],
+	imports: [
+		NextModule,
+		LogicModule,
+		RouteModule,
+		TransportModule
+	],
 })
 export class AppModule implements NestModule {
 
