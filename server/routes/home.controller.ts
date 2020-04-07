@@ -25,4 +25,18 @@ export class HomeController {
 		// 指定渲染路径
 		return this.next.render('/index', req, res);
 	}
+
+	/**
+	 * show detail
+	 *
+	 * @param {Request} req
+	 * @param {Response} res
+	 * @returns
+	 * @memberof HomeController
+	 */
+	@Get('detail')
+	public showDetail(@Req() req: Request, @Res() res: Response): Promise<any> {
+		// 指定渲染路径
+		return this.next.render('/detail/detail', req, res);
+	}
 }
