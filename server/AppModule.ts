@@ -15,6 +15,8 @@ import {
 import { TransportModule } from './logics/common/transport/TransportModule';
 import { DetailModule } from './pages/detail/DetailModule';
 import { AuthLogicalModule } from './logics/auth/AuthLogicalModule';
+import SecurityCore from './logics/common/security/SecurityCore';
+import SecurityXSS from './logics/common/security/SecurityXSS';
 
 /**
  * App Module
@@ -68,6 +70,11 @@ export class AppModule implements NestModule {
 		consumer.apply(RedirectIfNotAuthenticatedMiddleware).forRoutes({
 			path: '',
 			method: RequestMethod.GET
+		});
+
+		consumer.apply(SecurityCore, SecurityXSS).forRoutes({
+			path: '*',
+			method: RequestMethod.ALL
 		});
 	}
 
