@@ -13,7 +13,7 @@
 ```js
 
 
-npm run client:dev				// local start on development mode
+npm run client:dev	 			// local start on development mode
 
 visit: http://localhost:8088
 ```
